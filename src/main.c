@@ -1,7 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int main(int argc, char argv[])
+#include "defs.h"
+#include "argparse.h"
+
+int main(int argc, char* argv[])
 {
   const int NUM_OF_ARGS = argc - 1;
   if (NUM_OF_ARGS < 2) 
@@ -9,6 +12,24 @@ int main(int argc, char argv[])
     printf("Error: Expected 2 or more arguments, got %d\n", NUM_OF_ARGS);
     printf("Usage: prlx [FLAGS] [CONTENT/IDENTIFIER] [CONTENT]\n");
     return -1;
+  }
+  switch ( get_flag(argv[FLAG_INDEX]) )
+  {
+    case FLAG_CREATE:
+      printf("Create flag detected\n");
+      break;  
+    case FLAG_REMOVE:
+      printf("Remove flag detected\n");
+      break;  
+    case FLAG_MODIFY:
+      printf("Modify flag detected\n");
+      break;  
+    case FLAG_LIST:
+      printf("List flag detected\n");
+      break;  
+    case FLAG_INVALID:
+      printf("Flag error: %s is not a valid flag.\nConsult 'prlx --help' for info on flags.\n", argv[FLAG_INDEX]);
+      break;
   }
 
 
