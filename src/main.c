@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "defs.h"
 #include "argparse.h"
+
+#define FLAG_INDEX 1
 
 int main(int argc, char* argv[])
 {
