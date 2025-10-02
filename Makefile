@@ -38,6 +38,6 @@ clean:
 	@echo "Cleaned build artifacts."
 
 run: all
-	./$(TARGET)
+	./$(TARGET) $(ARGS)
 
 .PHONY: all clean run
