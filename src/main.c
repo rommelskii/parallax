@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "defs.h"
 #include "argparse.h"
 
 int main(int argc, char* argv[])
@@ -11,6 +12,15 @@ int main(int argc, char* argv[])
     printf("Error: Expected 2 or more arguments, got %d\n", NUM_OF_ARGS);
     printf("Usage: prlx [FLAGS] [CONTENT/IDENTIFIER] [CONTENT]\n");
     return -1;
+  }
+  switch ( get_flag(argv[FLAG_INDEX]) )
+  {
+    case FLAG_CREATE:
+      printf("Create flag detected\n");
+      break;  
+    default:
+      printf("Invalid flag detected\n");
+      break;
   }
 
 
