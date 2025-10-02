@@ -30,4 +30,6 @@ FLAG_TYPE get_flag(char* flag_string)
   {
     return FLAG_LIST;
   }
+
+  return FLAG_INVALID;
 }
