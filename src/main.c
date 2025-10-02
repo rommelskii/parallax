@@ -18,8 +18,17 @@ int main(int argc, char* argv[])
     case FLAG_CREATE:
       printf("Create flag detected\n");
       break;  
-    default:
-      printf("Invalid flag detected\n");
+    case FLAG_REMOVE:
+      printf("Remove flag detected\n");
+      break;  
+    case FLAG_MODIFY:
+      printf("Modify flag detected\n");
+      break;  
+    case FLAG_LIST:
+      printf("List flag detected\n");
+      break;  
+    case FLAG_INVALID:
+      printf("Flag error: %s is not a valid flag.\nConsult 'prlx --help' for info on flags.\n", argv[FLAG_INDEX]);
       break;
   }
 
