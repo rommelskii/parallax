@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int main(int argc, char argv[])
+#include "argparse.h"
+
+int main(int argc, char* argv[])
 {
   const int NUM_OF_ARGS = argc - 1;
   if (NUM_OF_ARGS < 2) 
