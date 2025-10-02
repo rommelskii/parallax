@@ -3,6 +3,10 @@
 
 int main(int argc, char argv[])
 {
-  printf("Working main() entrypoint\n");
+  if (argc == 1) 
+  {
+    printf("Usage: prlx [FLAGS] [CONTENT/IDENTIFIER] [CONTENT]\n");
+  }
+
   return 0;
 }
