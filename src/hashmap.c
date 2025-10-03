@@ -25,6 +25,7 @@ HashMap* hashmap_create(size_t table_size) {
     return map;
 }
 
+// probably unused for prlx 
 HashMap* lut_create(size_t table_size) {
 	HashMap* hm = hashmap_create(table_size);
 
