@@ -37,7 +37,7 @@ HashMap* lut_create(size_t table_size) {
 }
 
 // Inserts or updates a key-value pair in the hash map
-void hashmap_set(HashMap* map, const char* key, char* value, size_t table_size) {
+void hashmap_set(HashMap* map, const char* key, Task* new_task, size_t table_size) {
     // 1. Hash the key to get the bucket index
     unsigned long hash = hash_function(key);
     int index = hash % table_size;
@@ -47,7 +47,7 @@ void hashmap_set(HashMap* map, const char* key, char* value, size_t table_size) 
     while (current != NULL) {
         // If the key already exists, update the value and return
         if (strcmp(current->key, key) == 0) {
-            current->value = value;
+            current->value = new_task;
             return;
         }
         current = current->next;
@@ -56,7 +56,7 @@ void hashmap_set(HashMap* map, const char* key, char* value, size_t table_size) 
     // 3. If the key doesn't exist, create a new entry
     Entry* new_entry = (Entry*)malloc(sizeof(Entry));
     new_entry->key = strdup(key); // Use strdup to copy the key
-    new_entry->value = value;
+    new_entry->value = new_task;
     new_entry->next = NULL;
 
     // Insert the new entry at the head of the linked list
@@ -65,7 +65,7 @@ void hashmap_set(HashMap* map, const char* key, char* value, size_t table_size) 
 }
 
 // Retrieves a value from the hash map by key
-char* hashmap_get(HashMap* map, const char* key, size_t table_size) {
+Task* hashmap_get(HashMap* map, const char* key, size_t table_size) {
     unsigned long hash = hash_function(key);
     int index = hash % table_size;
 
