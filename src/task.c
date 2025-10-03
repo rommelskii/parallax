@@ -1,12 +1,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <uuid/uuid.h>
 #include "task.h"
 #include "hashmap.h"
 
 #define MAX_UUID_LENGTH 36
 #define MAX_CLASS_LENGTH 256
 #define MAX_CONTENT_LENGTH 2056 
+
+/**
+ * UUID TOOLS
+ */
+
+char* generate_uuid()
+{
+  uuid_t binuuid; 
+  char* uuid_buf = (char*)malloc(MAX_UUID_LENGTH + 1);
+  uuid_generate_random(binuuid);
+  uuid_unparse(binuuid, uuid_buf);
+
+  return uuid_buf;
+}
 
 /**
  * TASK INITIALIZERS
