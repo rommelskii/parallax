@@ -11,11 +11,14 @@ void test_harness()
   Task* t = create_task();  
   char* buf = (char*)malloc(37);
   memset(buf, 0, 37);
-
-
-  set_task_uuid(t, generate_uuid(buf, 37));
+  set_task_uuid(t, generate_uuid(buf));
   set_task_class(t, "test task");
-  //set_task_content(t, "print new line");
+  set_task_content(t, "print new line");
+
+  TaskClass* tc = create_task_class();
+  set_task_class_name(tc, "Comarch"); 
+  set_table(tc, 50); 
+  add_task_to_table(tc, t->task_uuid, t, 50);
 }
 
 int main(int argc, char* argv[])

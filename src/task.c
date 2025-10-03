@@ -13,7 +13,7 @@
  * UUID TOOLS
  */
 
-char* generate_uuid(char* buf, size_t size)
+char* generate_uuid(char* buf)
 {
   uuid_t binuuid; 
   uuid_generate_random(binuuid);
@@ -115,7 +115,7 @@ void set_task_class_name(TaskClass* task_class, char* class_name)
   strncpy(task_class->task_class_name, class_name, class_length);
 }
 
-void set_table_size(TaskClass* task_class, size_t table_size)
+void set_table(TaskClass* task_class, size_t table_size)
 {
   if ( task_class == NULL || table_size <= 0 )
   {
@@ -123,6 +123,7 @@ void set_table_size(TaskClass* task_class, size_t table_size)
     return;
   }
   task_class->table_size = table_size;
+  task_class->task_class_table = hashmap_create(table_size);
 }
 
 //key is uuid
