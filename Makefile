@@ -1,7 +1,7 @@
 # 1. Compiler and Flags
 CC = gcc
 CFLAGS = -Iinclude -Wall -Wextra -g
-LDLIBS = -luuid # ADD THIS LINE for linker libraries
+LDLIBS = -lcurl # ADD THIS LINE for linker libraries
 
 # 2. Directories
 SRCDIR = src

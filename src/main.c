@@ -2,8 +2,21 @@
 #include <stdio.h>
 
 #include "argparse.h"
+#include "task.h"
 
 #define FLAG_INDEX 1
+
+void test_harness()
+{
+  Task* t = create_task();  
+  char* buf = (char*)malloc(37);
+  memset(buf, 0, 37);
+
+
+  set_task_uuid(t, generate_uuid(buf, 37));
+  set_task_class(t, "test task");
+  //set_task_content(t, "print new line");
+}
 
 int main(int argc, char* argv[])
 {
@@ -18,6 +31,7 @@ int main(int argc, char* argv[])
   {
     case FLAG_CREATE:
       printf("Create flag detected\n");
+      test_harness();
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");
