@@ -13,14 +13,13 @@
  * UUID TOOLS
  */
 
-char* generate_uuid()
+char* generate_uuid(char* buf, size_t size)
 {
   uuid_t binuuid; 
-  char* uuid_buf = (char*)malloc(MAX_UUID_LENGTH + 1);
   uuid_generate_random(binuuid);
-  uuid_unparse(binuuid, uuid_buf);
+  uuid_unparse(binuuid, buf);
 
-  return uuid_buf;
+  return buf;
 }
 
 /**
@@ -30,16 +29,19 @@ char* generate_uuid()
 Task* create_task()
 {
   Task* task = (Task*)malloc(sizeof(Task));
-  task->task_uuid = NULL;
-  task->task_class = NULL;
-  task->task_content = NULL;
+  task->task_uuid = (char*)malloc(MAX_UUID_LENGTH + 1);
+  task->task_class = (char*)malloc(MAX_CLASS_LENGTH + 1);
+  task->task_content = (char*)malloc(MAX_CONTENT_LENGTH + 1);
+  memset(task->task_uuid, 0, MAX_UUID_LENGTH + 1);
+  memset(task->task_class, 0, MAX_CLASS_LENGTH + 1);
+  memset(task->task_content, 0, MAX_CONTENT_LENGTH + 1);
   return task;
 }
 
 TaskClass* create_task_class()
 {
   TaskClass* task_class = (TaskClass*)malloc(sizeof(TaskClass));
-  task_class->task_class_name = NULL;
+  task_class->task_class_name = (char*)malloc(MAX_CLASS_LENGTH + 1);
   task_class->table_size = 0;
   task_class->task_class_table = NULL;
   return task_class;
@@ -61,7 +63,7 @@ void set_task_uuid(Task* task, char* uuid)
     printf("Task error: UUID size too large\n");
     return;
   }
-  strncpy(task->task_uuid, uuid, MAX_UUID_LENGTH);
+  strncpy(task->task_uuid, uuid, MAX_UUID_LENGTH+1);
 }
 
 void set_task_class(Task* task, char* class)
