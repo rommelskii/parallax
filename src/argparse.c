@@ -4,6 +4,7 @@
 #include <string.h>
 
 #define FLAG_LENGTH 2
+#define MAX_CONTENT_LENGTH 2048
 
 FLAG_TYPE get_flag(char* flag_string)
 {
@@ -32,4 +33,12 @@ FLAG_TYPE get_flag(char* flag_string)
   }
 
   return FLAG_INVALID;
+}
+
+char* get_content_arg(char* str_arg)  // just a safety wrapper around strncpy
+{
+  size_t arg_len = strnlen(str_arg, MAX_CONTENT_LENGTH); 
+  char* ret = (char*)malloc(arg_len+1); // +1 for null term
+  strncpy(ret, str_arg, arg_len);
+  return ret;
 }
