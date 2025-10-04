@@ -167,3 +167,20 @@ void add_task_to_table(TaskClass* task_class, const char* key, Task* new_task, s
 /**
  * END OF TASK CLASS MUTATORS
  */
+
+
+/*
+* MISCELLANEOUS
+*/
+
+void print_task(Task* task)
+{
+  if (task == NULL)
+  {
+    return;
+  }
+  printf("Task class: %s\nContent: %s\n", task->task_class, task->task_content);
+}
+
+
+

@@ -50,6 +50,7 @@ int main(int argc, char* argv[])
       Task* new_task = create_task();
       set_task_class(new_task, class);
       set_task_content(new_task, content);
+      print_task(new_task);
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");
