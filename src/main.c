@@ -5,6 +5,9 @@
 #include "task.h"
 
 #define FLAG_INDEX 1
+#define FIRST_CONTENT_INDEX 2
+#define SECOND_CONTENT_INDEX 3
+#define DEFAULT_CLASS "def"
 
 void test_harness()
 {
@@ -30,11 +33,23 @@ int main(int argc, char* argv[])
     printf("Usage: prlx [FLAGS] [CONTENT/IDENTIFIER] [CONTENT]\n");
     return -1;
   }
-  switch ( get_flag(argv[FLAG_INDEX]) )
+
+  FLAG_TYPE flag = get_flag(argv[FLAG_INDEX]);
+  switch (flag)
   {
-    case FLAG_CREATE:
-      printf("Create flag detected\n");
-      test_harness();
+    case FLAG_CREATE: // 1: content 2: class if necessary
+      const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
+      char* class = NULL;
+      if (NUM_OF_ARGS == 2) 
+      {
+        class = "def";
+      } else 
+      {
+        class = get_content_arg(argv[SECOND_CONTENT_INDEX]);
+      }
+      Task* new_task = create_task();
+      set_task_class(new_task, class);
+      set_task_content(new_task, content);
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");

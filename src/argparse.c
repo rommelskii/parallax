@@ -35,10 +35,10 @@ FLAG_TYPE get_flag(char* flag_string)
   return FLAG_INVALID;
 }
 
-char* get_content_arg(char* str_arg)  // just a safety wrapper around strncpy
+const char* get_content_arg(char* str_arg)  // just a safety wrapper around strncpy
 {
   size_t arg_len = strnlen(str_arg, MAX_CONTENT_LENGTH); 
   char* ret = (char*)malloc(arg_len+1); // +1 for null term
-  strncpy(ret, str_arg, arg_len);
+  strncpy(ret, str_arg, arg_len+1);
   return ret;
 }
