@@ -1,7 +1,7 @@
 # 1. Compiler and Flags
 CC = gcc
 CFLAGS = -Iinclude -Wall -Wextra -g
-LDLIBS = -lcurl # ADD THIS LINE for linker libraries
+LDLIBS = -luuid # ADD THIS LINE for linker libraries
 
 # 2. Directories
 SRCDIR = src
@@ -24,7 +24,11 @@ all: $(TARGET)
 # Rule to link the final executable.
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
-	$(CC) $(OBJECTS) -o $(TARGET) $(LDLIBS)
+ifeq ($(shell uname -s),Linux)
+		$(CC) $(OBJECTS) -o $(TARGET) $(LDLIBS)
+else 
+		$(CC) $(OBJECTS) -o $(TARGET) 
+endif
 	@echo "Linking complete. Executable is at $(TARGET)"
 
 # Rule to compile a .c file into a .o file.
@@ -41,3 +45,4 @@ run: all
 	./$(TARGET) $(ARGS)
 
 .PHONY: all clean run
+
