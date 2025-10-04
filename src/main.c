@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "argparse.h"
+#include "hashmap.h"
 #include "task.h"
 
 #define FLAG_INDEX 1
@@ -11,6 +12,8 @@
 
 void runtime_test()
 {
+  HashMap* task_collection = hashmap_create(100);
+
   Task* t = create_task();  
   set_task_class(t, "test task");
   set_task_content(t, "print new line");
@@ -18,7 +21,51 @@ void runtime_test()
   TaskClass* tc = create_task_class();
   set_task_class_name(tc, "Comarch"); 
   set_table(tc, 50); 
-  add_task_to_table(tc, t->task_content, t, 50);
+  add_task_to_table(tc, t);
+
+  Task* find_task = task_get(tc->task_class_table, t->task_content, tc->table_size);
+
+
+  printf("--- BEGIN UNIT TESTS ---\n");
+  if (find_task != NULL)
+  {
+    printf("[WORKING] Task lookup\n");
+  } else 
+  {
+    printf("[ERROR] Task lookup\n");
+  }
+
+  task_class_set(task_collection, tc->task_class_name, tc, tc->table_size);
+
+  TaskClass* find_task_class = task_class_get(task_collection, tc->task_class_name, tc->table_size);
+
+  if ( find_task_class != NULL)
+  {
+    printf("[WORKING] Task class lookup\n");
+  } else 
+  {
+    printf("[ERROR] Task class lookup\n");
+  }
+
+  printf("--- BEGIN RUNTIME TEST ---\n");
+  Task* new_task = create_task();
+  set_task_class(new_task, "Test class");
+  set_task_content(new_task, "wash the dishes");
+  print_task(new_task);
+
+  TaskClass* new_task_class = create_task_class();
+  set_task_class_name(new_task_class, "Test class");
+  set_table(new_task_class, 50);
+  add_task_to_table(new_task_class, t);
+
+  task_class_set(task_collection, new_task_class->task_class_name, new_task_class, new_task_class->table_size);
+
+  find_task_class = task_class_get(task_collection, new_task->task_class, 50);
+  if (find_task_class != NULL)
+  {
+    add_task_to_table(find_task_class, new_task);
+    printf("working\n");
+  }
 }
 
 int main(int argc, char* argv[])
@@ -33,6 +80,7 @@ int main(int argc, char* argv[])
 
   if ( strcmp(argv[FLAG_INDEX], "-t") == 0 ) 
   {
+    runtime_test();
     return 0;
   }
 

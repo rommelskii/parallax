@@ -27,17 +27,12 @@ Task*       create_task();
 TaskClass*  create_task_class();
 
 
-Task*       create_task();
-
-TaskClass*  create_task_class();
-
-
 void  set_task_class(Task* task, char* class);
 void  set_task_content(Task* task, char* content);
 void  set_task_class_name(TaskClass* task_class, char* class_name);
 void  set_table(TaskClass* task_class, size_t table_size);
 Task* get_task_from_table(TaskClass* task_class, const char* key);
-void  add_task_to_table(TaskClass* task_class, const char* key, Task* new_task, size_t table_size);
+void  add_task_to_table(TaskClass* task_class, Task* new_task);
 void  print_task(Task* task);
 
 

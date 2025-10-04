@@ -107,13 +107,13 @@ Task* get_task_from_table(TaskClass* task_class, const char* key)
     printf("Task class error: invalid table size (%zu)", task_class->table_size);
     return NULL;
   }
-  return hashmap_get(task_class->task_class_table, key, task_class->table_size);
+  return task_get(task_class->task_class_table, key, task_class->table_size);
 }
 
 
-void add_task_to_table(TaskClass* task_class, const char* key, Task* new_task, size_t table_size)
+void add_task_to_table(TaskClass* task_class, Task* new_task)
 {
-  if ( task_class == NULL || key == NULL ) 
+  if ( task_class == NULL || new_task->task_content == NULL ) 
   {
     printf("Task class error: task class or key is null\n");
     return;
@@ -123,13 +123,13 @@ void add_task_to_table(TaskClass* task_class, const char* key, Task* new_task, s
     printf("Task class error: new task to be added is null\n");
     return;
   }
-  if ( table_size <= 0 ) 
+  if ( task_class->table_size <= 0 ) 
   {
     printf("Task class error: invalid table size (%zu)", task_class->table_size);
     return;
   }
 
-  hashmap_set(task_class->task_class_table, key, new_task, task_class->table_size);
+  task_set(task_class->task_class_table, new_task, task_class->table_size);
 }
 
 /**
