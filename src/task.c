@@ -1,26 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <uuid/uuid.h>
 #include "task.h"
 #include "hashmap.h"
 
-#define MAX_UUID_LENGTH 36
 #define MAX_CLASS_LENGTH 256
 #define MAX_CONTENT_LENGTH 2056 
-
-/**
- * UUID TOOLS
- */
-
-char* generate_uuid(char* buf)
-{
-  uuid_t binuuid; 
-  uuid_generate_random(binuuid);
-  uuid_unparse(binuuid, buf);
-
-  return buf;
-}
 
 /**
  * TASK INITIALIZERS
@@ -29,10 +14,8 @@ char* generate_uuid(char* buf)
 Task* create_task()
 {
   Task* task = (Task*)malloc(sizeof(Task));
-  task->task_uuid = (char*)malloc(MAX_UUID_LENGTH + 1);
   task->task_class = (char*)malloc(MAX_CLASS_LENGTH + 1);
   task->task_content = (char*)malloc(MAX_CONTENT_LENGTH + 1);
-  memset(task->task_uuid, 0, MAX_UUID_LENGTH + 1);
   memset(task->task_class, 0, MAX_CLASS_LENGTH + 1);
   memset(task->task_content, 0, MAX_CONTENT_LENGTH + 1);
   return task;
@@ -51,20 +34,6 @@ TaskClass* create_task_class()
 /**
   * TASK MUTATORS
   */
-void set_task_uuid(Task* task, char* uuid)
-{
-  if ( task == NULL || uuid == NULL ){
-    printf("Task error: task or uuid is null\n");
-    return;
-  }
-  size_t uuid_length = strnlen(uuid, MAX_UUID_LENGTH);
-  if ( uuid_length != MAX_UUID_LENGTH ) 
-  {
-    printf("Task error: UUID size too large\n");
-    return;
-  }
-  strncpy(task->task_uuid, uuid, MAX_UUID_LENGTH+1);
-}
 
 void set_task_class(Task* task, char* class)
 {
@@ -126,7 +95,6 @@ void set_table(TaskClass* task_class, size_t table_size)
   task_class->task_class_table = hashmap_create(table_size);
 }
 
-//key is uuid
 Task* get_task_from_table(TaskClass* task_class, const char* key) 
 {
   if ( task_class == NULL || key == NULL ) 
@@ -179,7 +147,7 @@ void print_task(Task* task)
   {
     return;
   }
-  printf("Task class: %s\nContent: %s\nUUID: %s\n", task->task_class, task->task_content, task->task_uuid);
+  printf("Task class: %s\nContent: %s\n", task->task_class, task->task_content);
 }
 
 

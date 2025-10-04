@@ -12,9 +12,8 @@ typedef struct HashMap HashMap;
 
 typedef struct Task 
 {
-  char* task_uuid;
   char* task_class;
-  char* task_content; 
+  char* task_content; //this is the unique identifier
 } Task;
 
 typedef struct TaskClass
@@ -28,13 +27,11 @@ Task*       create_task();
 TaskClass*  create_task_class();
 
 
-char*       generate_uuid(char* buf);
 Task*       create_task();
 
 TaskClass*  create_task_class();
 
 
-void  set_task_uuid(Task* task, char* uuid);
 void  set_task_class(Task* task, char* class);
 void  set_task_content(Task* task, char* content);
 void  set_task_class_name(TaskClass* task_class, char* class_name);
