@@ -1,8 +1,28 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "defs.h"
 #include "argparse.h"
+#include "task.h"
+
+#define FLAG_INDEX 1
+#define FIRST_CONTENT_INDEX 2
+#define SECOND_CONTENT_INDEX 3
+#define DEFAULT_CLASS "def"
+
+void test_harness()
+{
+  Task* t = create_task();  
+  char* buf = (char*)malloc(37);
+  memset(buf, 0, 37);
+  set_task_uuid(t, generate_uuid(buf));
+  set_task_class(t, "test task");
+  set_task_content(t, "print new line");
+
+  TaskClass* tc = create_task_class();
+  set_task_class_name(tc, "Comarch"); 
+  set_table(tc, 50); 
+  add_task_to_table(tc, t->task_uuid, t, 50);
+}
 
 int main(int argc, char* argv[])
 {
@@ -13,10 +33,24 @@ int main(int argc, char* argv[])
     printf("Usage: prlx [FLAGS] [CONTENT/IDENTIFIER] [CONTENT]\n");
     return -1;
   }
-  switch ( get_flag(argv[FLAG_INDEX]) )
+
+  FLAG_TYPE flag = get_flag(argv[FLAG_INDEX]);
+  switch (flag)
   {
-    case FLAG_CREATE:
-      printf("Create flag detected\n");
+    case FLAG_CREATE: // 1: content 2: class if necessary
+      const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
+      char* class = NULL;
+      if (NUM_OF_ARGS == 2) 
+      {
+        class = "def";
+      } else 
+      {
+        class = get_content_arg(argv[SECOND_CONTENT_INDEX]);
+      }
+      Task* new_task = create_task();
+      set_task_class(new_task, class);
+      set_task_content(new_task, content);
+      print_task(new_task);
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");

@@ -11,6 +11,6 @@ typedef enum
 } FLAG_TYPE;
 
 FLAG_TYPE get_flag(char* flag_string);
-
+const char* get_content_arg(char* str_arg); 
 
 #endif //ARGPARSE_H
