@@ -5,11 +5,12 @@
 #include "task.h"
 
 #define FLAG_INDEX 1
+#define UUID_LENGTH 36
 #define FIRST_CONTENT_INDEX 2
 #define SECOND_CONTENT_INDEX 3
 #define DEFAULT_CLASS "def"
 
-void test_harness()
+void runtime_test()
 {
   Task* t = create_task();  
   char* buf = (char*)malloc(37);
@@ -27,12 +28,19 @@ void test_harness()
 int main(int argc, char* argv[])
 {
   const int NUM_OF_ARGS = argc - 1;
+  char* uuid_buf = (char*)malloc(UUID_LENGTH+1);
   if (NUM_OF_ARGS < 2) 
   {
     printf("Error: Expected 2 or more arguments, got %d\n", NUM_OF_ARGS);
     printf("Usage: prlx [FLAGS] [CONTENT/IDENTIFIER] [CONTENT]\n");
     return -1;
   }
+
+  if ( strcmp(argv[FLAG_INDEX], "-t") == 0 ) 
+  {
+    return 0;
+  }
+
 
   FLAG_TYPE flag = get_flag(argv[FLAG_INDEX]);
   switch (flag)
@@ -48,6 +56,7 @@ int main(int argc, char* argv[])
         class = get_content_arg(argv[SECOND_CONTENT_INDEX]);
       }
       Task* new_task = create_task();
+      set_task_uuid(new_task, generate_uuid(uuid_buf));
       set_task_class(new_task, class);
       set_task_content(new_task, content);
       print_task(new_task);
