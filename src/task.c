@@ -179,7 +179,7 @@ void print_task(Task* task)
   {
     return;
   }
-  printf("Task class: %s\nContent: %s\nUUID: %s", task->task_class, task->task_content, task->task_uuid);
+  printf("Task class: %s\nContent: %s\nUUID: %s\n", task->task_class, task->task_content, task->task_uuid);
 }
 
 
