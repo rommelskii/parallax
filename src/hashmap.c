@@ -67,7 +67,9 @@ void task_set(HashMap* map, Task* new_task, size_t table_size) {
     map->buckets[index] = new_entry;
 }
 
-void task_class_set(HashMap* map, const char* key, TaskClass* new_task, size_t table_size) {
+void task_class_set(HashMap* map, const char* key, TaskClass* new_task) 
+{
+    size_t table_size = new_task->table_size;
     // 1. Hash the key to get the bucket index
     unsigned long hash = hash_function(key);
     int index = hash % table_size;
