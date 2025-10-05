@@ -12,60 +12,123 @@
 
 void runtime_test()
 {
-  HashMap* task_collection = hashmap_create(100);
+  printf("--- BATCH 1 TESTS: INITIALIZATION ---\n");
+  const size_t COLLECTION_SIZE = 100;
 
-  Task* t = create_task();  
-  set_task_class(t, "test task");
-  set_task_content(t, "print new line");
-
-  TaskClass* tc = create_task_class();
-  set_task_class_name(tc, "Comarch"); 
-  set_table(tc, 50); 
-  add_task_to_class(tc, t);
-
-  Task* find_task = task_get(tc->task_class_table, t->task_content, tc->table_size);
-
-
-  printf("--- BEGIN UNIT TESTS ---\n");
-  if (find_task != NULL)
+  /**
+    * TEST #1a: TASK COLLECTION 
+    */
+  printf("Test #1a: Task Collection ");
+  TaskCollection* task_collection = create_task_collection(COLLECTION_SIZE);
+  if (task_collection == NULL)
   {
-    printf("[WORKING] Task lookup\n");
+    printf("[FAILED]\n");
+    return;
   } else 
   {
-    printf("[ERROR] Task lookup\n");
+    printf("[PASSED]\n");
   }
-
-  task_class_set(task_collection, tc->task_class_name, tc);
-
-  TaskClass* find_task_class = task_class_get(task_collection, tc->task_class_name, tc->table_size);
-
-  if ( find_task_class != NULL)
+  /**
+    * TEST #1b: TASK CLASS
+    */
+  printf("Test #1b: Task Class ");
+  const char* CLASS_NAME = "TEST_CLASS";
+  const size_t CLASS_SIZE = 50;
+  TaskClass* task_class = create_task_class(CLASS_NAME, CLASS_SIZE);
+  if (task_class == NULL)
   {
-    printf("[WORKING] Task class lookup\n");
+    printf("[FAILED]\n");
+    return;
   } else 
   {
-    printf("[ERROR] Task class lookup\n");
+    printf("[PASSED]\n");
   }
-
-  printf("--- BEGIN RUNTIME TEST ---\n");
-  Task* new_task = create_task();
-  set_task_class(new_task, "Test class");
-  set_task_content(new_task, "wash the dishes");
-  print_task(new_task);
-
-  TaskClass* new_task_class = create_task_class();
-  set_task_class_name(new_task_class, "Test class");
-  set_table(new_task_class, 50);
-  add_task_to_class(new_task_class, t);
-
-  task_class_set(task_collection, new_task_class->task_class_name, new_task_class);
-
-  find_task_class = task_class_get(task_collection, new_task->task_class, 50);
-  if (find_task_class != NULL)
+  /**
+    * TEST #1c: TASK CREATION 
+    */
+  printf("Test #1c: Task Creation ");
+  const char* TASK_CONTENT = "TEST_CONTENT";
+  Task* task = create_task(CLASS_NAME, TASK_CONTENT);
+  if (task == NULL)
   {
-    add_task_to_class(find_task_class, new_task);
-    printf("working\n");
+    printf("[FAILED]\n");
+    return;
+  } else 
+  {
+    printf("[PASSED]\n");
   }
+
+  printf("--- BATCH 2: ATTRIBUTE TESTING ---\n");
+
+  printf("Test #2a: Task class name ");
+  if (task->task_class != CLASS_NAME)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2b: Task content ");
+  if (task->task_content != TASK_CONTENT)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2c: Task class name ");
+  if (task_class->task_class_name != CLASS_NAME)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2d: Task class hashmap ");
+  if (task_class->task_class_table == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2e: Task collection hashmap ");
+  if (task_collection->task_collection == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+
+  printf("--- BATCH 3: ADDITION TESTS ---\n");
+  printf("Test #3a: Task Addition ");
+  add_task(task_class, task);
+  if ( get_task(task_class, task->task_content) == NULL )
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+
+  printf("Test #3b: Task Class Addition ");
+  add_task_class(task_collection, task_class);
+  if ( get_task_class(task_collection, task_class->task_class_name) == NULL )
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  return;
 }
 
 int main(int argc, char* argv[])
@@ -99,10 +162,6 @@ int main(int argc, char* argv[])
       {
         class = get_content_arg(argv[SECOND_CONTENT_INDEX]);
       }
-      Task* new_task = create_task();
-      set_task_class(new_task, class);
-      set_task_content(new_task, content);
-      print_task(new_task);
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");

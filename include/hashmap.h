@@ -11,14 +11,18 @@ typedef struct Entry {
 
 typedef struct HashMap {
     Entry** buckets; // An array of pointers to Entry
+    size_t table_size;
 } HashMap;
 
 unsigned long hash_function(const char* str);
 HashMap*      hashmap_create(size_t table_size);
-HashMap*      lut_create(size_t table_size);
-void          hashmap_destroy(HashMap* map, size_t table_size);
+void          hashmap_set(HashMap* map, char* key, void* value);
+void*         hashmap_get(HashMap* map, char* key);
+void          hashmap_destroy(HashMap* map);
+/*
 void          task_set(HashMap* map, Task* new_task, size_t table_size);
 void          task_class_set(HashMap* map, const char* key, TaskClass* new_task);
 Task*         task_get(HashMap* map, const char* key, size_t table_size);
 TaskClass*    task_class_get(HashMap* map, const char* key, size_t table_size);
+*/
 #endif //HASHMAP_H
