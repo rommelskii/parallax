@@ -95,7 +95,7 @@ void set_table(TaskClass* task_class, size_t table_size)
   task_class->task_class_table = hashmap_create(table_size);
 }
 
-Task* get_task_from_table(TaskClass* task_class, const char* key) 
+Task* get_task_from_class(TaskClass* task_class, const char* key) 
 {
   if ( task_class == NULL || key == NULL ) 
   {
@@ -111,7 +111,7 @@ Task* get_task_from_table(TaskClass* task_class, const char* key)
 }
 
 
-void add_task_to_table(TaskClass* task_class, Task* new_task)
+void add_task_to_class(TaskClass* task_class, Task* new_task)
 {
   if ( task_class == NULL || new_task->task_content == NULL ) 
   {

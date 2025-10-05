@@ -21,7 +21,7 @@ void runtime_test()
   TaskClass* tc = create_task_class();
   set_task_class_name(tc, "Comarch"); 
   set_table(tc, 50); 
-  add_task_to_table(tc, t);
+  add_task_to_class(tc, t);
 
   Task* find_task = task_get(tc->task_class_table, t->task_content, tc->table_size);
 
@@ -35,7 +35,7 @@ void runtime_test()
     printf("[ERROR] Task lookup\n");
   }
 
-  task_class_set(task_collection, tc->task_class_name, tc, tc->table_size);
+  task_class_set(task_collection, tc->task_class_name, tc);
 
   TaskClass* find_task_class = task_class_get(task_collection, tc->task_class_name, tc->table_size);
 
@@ -56,14 +56,14 @@ void runtime_test()
   TaskClass* new_task_class = create_task_class();
   set_task_class_name(new_task_class, "Test class");
   set_table(new_task_class, 50);
-  add_task_to_table(new_task_class, t);
+  add_task_to_class(new_task_class, t);
 
-  task_class_set(task_collection, new_task_class->task_class_name, new_task_class, new_task_class->table_size);
+  task_class_set(task_collection, new_task_class->task_class_name, new_task_class);
 
   find_task_class = task_class_get(task_collection, new_task->task_class, 50);
   if (find_task_class != NULL)
   {
-    add_task_to_table(find_task_class, new_task);
+    add_task_to_class(find_task_class, new_task);
     printf("working\n");
   }
 }
@@ -85,12 +85,13 @@ int main(int argc, char* argv[])
   }
 
 
+  const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
+  char* class = NULL;
+
   FLAG_TYPE flag = get_flag(argv[FLAG_INDEX]);
   switch (flag)
   {
     case FLAG_CREATE: // 1: content 2: class if necessary
-      const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
-      char* class = NULL;
       if (NUM_OF_ARGS == 2) 
       {
         class = "def";
