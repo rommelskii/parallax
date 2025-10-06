@@ -4,6 +4,11 @@ Parallax is a lightweight, command-line-driven task management tool designed for
 
 ---
 
+## Instructions for runtime testing
+
+1. Make sure gcc is installed.
+2. On the cloned repository, perform 'make run ARGS='-t a'
+
 ## Core Features
 
 * **Task Management (CRUD):** Full Create, Read, Update, and Delete functionality for all your tasks.
