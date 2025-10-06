@@ -120,6 +120,36 @@ void add_task_class(TaskCollection* task_collection, TaskClass* task_class)
  * END OF TASK CLASS MUTATORS
  */
 
+/**
+ * Destructor implementation 
+ */
+
+
+void remove_task(TaskClass* task_class, char* task_content)
+{
+  if (task_class == NULL || task_content == NULL)
+  {
+    return;
+  }
+  if (task_class->task_class_table == NULL)
+  {
+    return; 
+  }
+  hashmap_elem_remove(task_class->task_class_table, task_content);
+}
+
+void remove_task_class(TaskCollection* task_collection, char* class_name)
+{
+  if (task_collection == NULL || class_name == NULL)
+  {
+    return;
+  }
+  if (task_collection->task_collection == NULL)
+  {
+    return; 
+  }
+  hashmap_elem_remove(task_collection->task_collection, class_name);
+}
 
 /*
 * MISCELLANEOUS

@@ -46,6 +46,12 @@ void  add_task(TaskClass* task_class, Task* new_task);
 TaskClass*  get_task_class(TaskCollection* task_collection, const char* key);
 void        add_task_class(TaskCollection* task_collection, TaskClass* task_class);
 
+/**
+  * Destructors
+  */
+void remove_task(TaskClass* task_class, char* task_content);
+void remove_task_class(TaskCollection* task_collection, char* class_name);
+
 //Misc
 void  print_task(Task* task);
 

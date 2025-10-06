@@ -66,6 +66,37 @@ void* hashmap_get(HashMap* map, char* key)
 
   return NULL;
 }
+
+void hashmap_elem_remove(HashMap* map, char* key)
+{
+  unsigned long hash = hash_function(key);  
+  size_t index = hash % map->table_size;
+  Entry* current = map->buckets[index];
+  Entry* prev = NULL;
+  while (current != NULL)
+  {
+    if (strcmp(current->key, key) == 0)
+    {
+      break;
+    }
+    prev = current;
+    current = current->next;
+  }
+  if (current == NULL)
+  {
+    printf("Hashmap error: delete node cannot be found\n");
+    return;
+  }
+  if (prev == NULL)
+  {
+    map->buckets[index] = current->next;
+  } else {
+    prev->next = current->next; 
+  }
+  free(current->key);
+  free(current);
+}
+
 void hashmap_destroy(HashMap* map) 
 {
   size_t table_size = map->table_size;

@@ -128,6 +128,28 @@ void runtime_test()
   {
     printf("[PASSED]\n");
   }
+
+  printf("--- BATCH 4: DELETION TESTS ---\n");
+
+  printf("Test #4a: Task Deletion ");
+  char* content = task->task_content;
+  remove_task(task_class, content);
+  if ( get_task(task_class, content) != NULL )
+  {
+    printf("[FAILED]\n");    
+  } else {
+    printf("[PASSED]\n");    
+  }
+
+  printf("Test #4b: Task Class Deletion ");
+  char* class = task_class->task_class_name;
+  remove_task_class(task_collection, class);
+  if ( get_task_class(task_collection, class) != NULL )
+  {
+    printf("[FAILED]\n");    
+  } else {
+    printf("[PASSED]\n");    
+  }
   return;
 }
 
