@@ -1,133 +1,47 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <uuid/uuid.h>
 #include "task.h"
 #include "hashmap.h"
 
-#define MAX_UUID_LENGTH 36
 #define MAX_CLASS_LENGTH 256
 #define MAX_CONTENT_LENGTH 2056 
-
-/**
- * UUID TOOLS
- */
-
-char* generate_uuid(char* buf)
-{
-  uuid_t binuuid; 
-  uuid_generate_random(binuuid);
-  uuid_unparse(binuuid, buf);
-
-  return buf;
-}
 
 /**
  * TASK INITIALIZERS
  */
 
-Task* create_task()
+Task* create_task(char* class_of_task, char* task_content)
 {
   Task* task = (Task*)malloc(sizeof(Task));
-  task->task_uuid = (char*)malloc(MAX_UUID_LENGTH + 1);
-  task->task_class = (char*)malloc(MAX_CLASS_LENGTH + 1);
-  task->task_content = (char*)malloc(MAX_CONTENT_LENGTH + 1);
-  memset(task->task_uuid, 0, MAX_UUID_LENGTH + 1);
-  memset(task->task_class, 0, MAX_CLASS_LENGTH + 1);
-  memset(task->task_content, 0, MAX_CONTENT_LENGTH + 1);
+  task->task_class = class_of_task;
+  task->task_content = task_content;
   return task;
 }
 
-TaskClass* create_task_class()
+TaskClass* create_task_class(char* class_name, size_t class_size)
 {
   TaskClass* task_class = (TaskClass*)malloc(sizeof(TaskClass));
-  task_class->task_class_name = (char*)malloc(MAX_CLASS_LENGTH + 1);
-  task_class->table_size = 0;
-  task_class->task_class_table = NULL;
+  task_class->task_class_name = class_name;
+  task_class->table_size = class_size;
+  task_class->task_class_table = hashmap_create(class_size);
   return task_class;
 }
 
+TaskCollection* create_task_collection(size_t collection_size)
+{
+  TaskCollection* task_collection = (TaskCollection*)malloc(sizeof(TaskCollection)); 
+  task_collection->collection_size = collection_size;
+  task_collection->task_collection = hashmap_create(collection_size);
+  return task_collection;
+}
+
 
 /**
-  * TASK MUTATORS
+  * TASK GETTERS
   */
-void set_task_uuid(Task* task, char* uuid)
-{
-  if ( task == NULL || uuid == NULL ){
-    printf("Task error: task or uuid is null\n");
-    return;
-  }
-  size_t uuid_length = strnlen(uuid, MAX_UUID_LENGTH);
-  if ( uuid_length != MAX_UUID_LENGTH ) 
-  {
-    printf("Task error: UUID size too large\n");
-    return;
-  }
-  strncpy(task->task_uuid, uuid, MAX_UUID_LENGTH+1);
-}
 
-void set_task_class(Task* task, char* class)
-{
-  if ( task == NULL || class == NULL ){
-    printf("Task error: task or class is null\n");
-    return;
-  }
-  size_t class_length = strnlen(class, MAX_CLASS_LENGTH);
-  if ( class_length >= MAX_CLASS_LENGTH )
-  {
-    printf("Task error: class size too large\n");
-  }
-  strncpy(task->task_class, class, class_length);
-}
-
-void set_task_content(Task* task, char* content)
-{
-  if ( task == NULL || content == NULL ){
-    printf("Task error: task or content is null\n");
-    return;
-  }
-  size_t content_length = strnlen(content, MAX_CONTENT_LENGTH);
-  if ( content_length >= MAX_CONTENT_LENGTH )
-  {
-    printf("Task error: content size too large\n");
-  }
-  strncpy(task->task_content, content, content_length);
-}
-/**
- * END OF TASK MUTATORS
- */
-
-/**
-  * TASK CLASS MUTATORS
-  */
-void set_task_class_name(TaskClass* task_class, char* class_name)
-{
-  if ( task_class == NULL || class_name == NULL )
-  {
-    printf("Task class error: task class or class name is null\n");
-    return;
-  }
-  size_t class_length = strnlen(class_name, MAX_CLASS_LENGTH);
-  if ( class_length >= MAX_CLASS_LENGTH )
-  {
-    printf("Task class error: class size too large\n");
-  }
-  strncpy(task_class->task_class_name, class_name, class_length);
-}
-
-void set_table(TaskClass* task_class, size_t table_size)
-{
-  if ( task_class == NULL || table_size <= 0 )
-  {
-    printf("Task class error: task class or table size is nonpositive (%zu)\n", table_size);
-    return;
-  }
-  task_class->table_size = table_size;
-  task_class->task_class_table = hashmap_create(table_size);
-}
-
-//key is uuid
-Task* get_task_from_table(TaskClass* task_class, const char* key) 
+Task* get_task(TaskClass* task_class, const char* key) 
 {
   if ( task_class == NULL || key == NULL ) 
   {
@@ -139,13 +53,18 @@ Task* get_task_from_table(TaskClass* task_class, const char* key)
     printf("Task class error: invalid table size (%zu)", task_class->table_size);
     return NULL;
   }
-  return hashmap_get(task_class->task_class_table, key, task_class->table_size);
+  void* ret = hashmap_get(task_class->task_class_table, key);
+  if (ret == NULL)
+  {
+    return NULL;
+  }
+  return (Task*)ret;
+  //return task_get(task_class->task_class_table, key, task_class->table_size);
 }
 
-
-void add_task_to_table(TaskClass* task_class, const char* key, Task* new_task, size_t table_size)
+void add_task(TaskClass* task_class, Task* new_task)
 {
-  if ( task_class == NULL || key == NULL ) 
+  if ( task_class == NULL || new_task->task_content == NULL ) 
   {
     printf("Task class error: task class or key is null\n");
     return;
@@ -155,19 +74,82 @@ void add_task_to_table(TaskClass* task_class, const char* key, Task* new_task, s
     printf("Task class error: new task to be added is null\n");
     return;
   }
-  if ( table_size <= 0 ) 
+  if ( task_class->table_size <= 0 ) 
   {
     printf("Task class error: invalid table size (%zu)", task_class->table_size);
     return;
   }
+  
+  hashmap_set(task_class->task_class_table, new_task->task_content, new_task);
+}
 
-  hashmap_set(task_class->task_class_table, key, new_task, task_class->table_size);
+TaskClass*  get_task_class(TaskCollection* task_collection, const char* key)
+{
+  if (task_collection == NULL || key == NULL) 
+  {
+    return NULL;
+  }
+  if (task_collection->collection_size <= 0)
+  {
+    return NULL;
+  }
+
+  void* ret = hashmap_get(task_collection->task_collection, key);
+
+  if (ret == NULL)
+  {
+    return NULL;
+  }
+  return (TaskClass*)ret;
+}
+
+void add_task_class(TaskCollection* task_collection, TaskClass* task_class)
+{
+  if (task_collection == NULL || task_class == NULL) 
+  {
+    return;
+  }
+  if (task_class->task_class_name == NULL)
+  {
+    return;
+  }
+  hashmap_set(task_collection->task_collection, task_class->task_class_name, task_class);
 }
 
 /**
  * END OF TASK CLASS MUTATORS
  */
 
+/**
+ * Destructor implementation 
+ */
+
+
+void remove_task(TaskClass* task_class, char* task_content)
+{
+  if (task_class == NULL || task_content == NULL)
+  {
+    return;
+  }
+  if (task_class->task_class_table == NULL)
+  {
+    return; 
+  }
+  hashmap_elem_remove(task_class->task_class_table, task_content);
+}
+
+void remove_task_class(TaskCollection* task_collection, char* class_name)
+{
+  if (task_collection == NULL || class_name == NULL)
+  {
+    return;
+  }
+  if (task_collection->task_collection == NULL)
+  {
+    return; 
+  }
+  hashmap_elem_remove(task_collection->task_collection, class_name);
+}
 
 /*
 * MISCELLANEOUS
@@ -179,7 +161,7 @@ void print_task(Task* task)
   {
     return;
   }
-  printf("Task class: %s\nContent: %s\nUUID: %s\n", task->task_class, task->task_content, task->task_uuid);
+  printf("Task class: %s\nContent: %s\n", task->task_class, task->task_content);
 }
 
 

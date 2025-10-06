@@ -5,18 +5,20 @@
 
 typedef struct Entry {
     char* key;
-    Task* value;
+    void* value;
     struct Entry* next;
 } Entry;
 
 typedef struct HashMap {
     Entry** buckets; // An array of pointers to Entry
+    size_t table_size;
 } HashMap;
 
 unsigned long hash_function(const char* str);
 HashMap*      hashmap_create(size_t table_size);
-HashMap*      lut_create(size_t table_size);
-void          hashmap_destroy(HashMap* map, size_t table_size);
-void          hashmap_set(HashMap* map, const char* key, Task* new_task, size_t table_size);
-Task*         hashmap_get(HashMap* map, const char* key, size_t table_size);
+void          hashmap_set(HashMap* map, char* key, void* value);
+void*         hashmap_get(HashMap* map, char* key);
+void          hashmap_elem_remove(HashMap* map, char* key);
+void          hashmap_destroy(HashMap* map);
+
 #endif //HASHMAP_H

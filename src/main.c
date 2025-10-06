@@ -2,33 +2,245 @@
 #include <stdio.h>
 
 #include "argparse.h"
+#include "hashmap.h"
 #include "task.h"
 
 #define FLAG_INDEX 1
-#define UUID_LENGTH 36
 #define FIRST_CONTENT_INDEX 2
 #define SECOND_CONTENT_INDEX 3
 #define DEFAULT_CLASS "def"
 
+
 void runtime_test()
 {
-  Task* t = create_task();  
-  char* buf = (char*)malloc(37);
-  memset(buf, 0, 37);
-  set_task_uuid(t, generate_uuid(buf));
-  set_task_class(t, "test task");
-  set_task_content(t, "print new line");
+  printf("--- BATCH 1 TESTS: INITIALIZATION ---\n");
+  const size_t COLLECTION_SIZE = 100;
 
-  TaskClass* tc = create_task_class();
-  set_task_class_name(tc, "Comarch"); 
-  set_table(tc, 50); 
-  add_task_to_table(tc, t->task_uuid, t, 50);
+  /**
+    * TEST #1a: TASK COLLECTION 
+    */
+  printf("Test #1a: Task Collection ");
+  TaskCollection* task_collection = create_task_collection(COLLECTION_SIZE);
+  if (task_collection == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else 
+  {
+    printf("[PASSED]\n");
+  }
+  /**
+    * TEST #1b: TASK CLASS
+    */
+  printf("Test #1b: Task Class ");
+  const char* CLASS_NAME = "TEST_CLASS";
+  const size_t CLASS_SIZE = 50;
+  TaskClass* task_class = create_task_class(CLASS_NAME, CLASS_SIZE);
+  if (task_class == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else 
+  {
+    printf("[PASSED]\n");
+  }
+  /**
+    * TEST #1c: TASK CREATION 
+    */
+  printf("Test #1c: Task Creation ");
+  const char* TASK_CONTENT = "TEST_CONTENT";
+  Task* task = create_task(CLASS_NAME, TASK_CONTENT);
+  if (task == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else 
+  {
+    printf("[PASSED]\n");
+  }
+
+  printf("--- BATCH 2: ATTRIBUTE TESTING ---\n");
+
+  printf("Test #2a: Task class name ");
+  if (task->task_class != CLASS_NAME)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2b: Task content ");
+  if (task->task_content != TASK_CONTENT)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2c: Task class name ");
+  if (task_class->task_class_name != CLASS_NAME)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2d: Task class hashmap ");
+  if (task_class->task_class_table == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+  printf("Test #2e: Task collection hashmap ");
+  if (task_collection->task_collection == NULL)
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+
+  printf("--- BATCH 3: ADDITION TESTS ---\n");
+  printf("Test #3a: Task Addition ");
+  add_task(task_class, task);
+  if ( get_task(task_class, task->task_content) == NULL )
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+
+  printf("Test #3b: Task Class Addition ");
+  add_task_class(task_collection, task_class);
+  if ( get_task_class(task_collection, task_class->task_class_name) == NULL )
+  {
+    printf("[FAILED]\n");
+    return;
+  } else
+  {
+    printf("[PASSED]\n");
+  }
+
+  printf("--- BATCH 4: DELETION TESTS ---\n");
+
+  printf("Test #4a: Task Deletion ");
+  char* content = task->task_content;
+  remove_task(task_class, content);
+  if ( get_task(task_class, content) != NULL )
+  {
+    printf("[FAILED]\n");    
+  } else {
+    printf("[PASSED]\n");    
+  }
+
+  printf("Test #4b: Task Class Deletion ");
+  char* class = task_class->task_class_name;
+  remove_task_class(task_collection, class);
+  if ( get_task_class(task_collection, class) != NULL )
+  {
+    printf("[FAILED]\n");    
+  } else {
+    printf("[PASSED]\n");    
+  }
+  
+  /**
+    * Runtime test
+    */
+
+  const size_t RUNTIME_COLLECTION_SIZE = 50; 
+  TaskCollection* runtime_task_collection = create_task_collection(RUNTIME_COLLECTION_SIZE);
+  TaskClass* runtime_task_class = NULL;
+  Task* runtime_task = NULL;
+
+  system("cat ./misc/logo.txt");
+
+  if (runtime_task_collection == NULL)
+  {
+    printf("Runtime test error: failed to create task collection\n");
+    return;
+  }
+  while (1) 
+  {
+    char class_name[1024];
+    char task_content[1024];
+    char yn[16];
+
+    printf("Enter todo class/category: ");
+    fgets(class_name, sizeof(class_name), stdin);
+    if ( strlen(class_name) > 0 && (class_name[ strlen(class_name) - 1] == '\n') )
+    {
+      class_name[ strlen(class_name) - 1 ] = '\0';
+    }
+
+    if ( strcmp(class_name, "quit") == 0 ) {
+      return;
+    }
+
+    printf("Enter description: ");
+    fgets(task_content, sizeof(task_content), stdin);
+    if ( strlen(task_content) > 0 && (task_content[ strlen(task_content) - 1] == '\n') )
+    {
+      task_content[ strlen(task_content) - 1 ] = '\0';
+    }
+
+    printf("--- Summary ---\nclass: '%s'\ncontent:'%s'\n---------------\nContinue? (y/n) ", class_name, task_content);
+    fgets(yn, sizeof(yn), stdin);
+    if ( strlen(yn) > 0 && (yn[ strlen(yn) - 1] == '\n') )
+    {
+      yn[ strlen(yn) - 1 ] = '\0';
+    }
+    if ( strcmp(&yn[0], "y") != 0 )
+    {
+      continue;
+    }
+
+    system("clear");
+
+    runtime_task = create_task(class_name, task_content);
+    if (runtime_task == NULL)
+    {
+      printf("Runtime test error: failed to create task\n");
+      return;
+    }
+
+    runtime_task_class =get_task_class(runtime_task_collection, class_name);
+    if (runtime_task_class == NULL) // class does not exist; create it
+    {
+      printf("Class '%s' does not exist. Creating...\n", class_name);
+      add_task_class(runtime_task_collection, create_task_class(class_name, RUNTIME_COLLECTION_SIZE)); 
+      runtime_task_class = get_task_class(runtime_task_collection, class_name);
+      add_task(runtime_task_class, runtime_task);
+      printf("Appended task to '%s'\n\n", class_name);
+    } else {
+      if ( get_task(runtime_task_class, task_content) != NULL ) 
+      {
+        printf("Runtime error: task already exists in '%s'\n", class_name);
+        continue;
+      }
+      printf("Appending task to '%s'...\n", class_name);
+      add_task(runtime_task_class, runtime_task);
+      printf("Appended task to '%s'\n\n", class_name);
+    }
+    printf("Enter category name 'quit' to exit runtime test\n");
+    system("sleep 4");
+    system("clear");
+  }
+
+  return;
 }
 
 int main(int argc, char* argv[])
 {
   const int NUM_OF_ARGS = argc - 1;
-  char* uuid_buf = (char*)malloc(UUID_LENGTH+1);
   if (NUM_OF_ARGS < 2) 
   {
     printf("Error: Expected 2 or more arguments, got %d\n", NUM_OF_ARGS);
@@ -38,16 +250,18 @@ int main(int argc, char* argv[])
 
   if ( strcmp(argv[FLAG_INDEX], "-t") == 0 ) 
   {
+    runtime_test();
     return 0;
   }
 
+
+  const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
+  char* class = NULL;
 
   FLAG_TYPE flag = get_flag(argv[FLAG_INDEX]);
   switch (flag)
   {
     case FLAG_CREATE: // 1: content 2: class if necessary
-      const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
-      char* class = NULL;
       if (NUM_OF_ARGS == 2) 
       {
         class = "def";
@@ -55,11 +269,6 @@ int main(int argc, char* argv[])
       {
         class = get_content_arg(argv[SECOND_CONTENT_INDEX]);
       }
-      Task* new_task = create_task();
-      set_task_uuid(new_task, generate_uuid(uuid_buf));
-      set_task_class(new_task, class);
-      set_task_content(new_task, content);
-      print_task(new_task);
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");
