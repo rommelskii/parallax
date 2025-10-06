@@ -10,6 +10,7 @@
 #define SECOND_CONTENT_INDEX 3
 #define DEFAULT_CLASS "def"
 
+
 void runtime_test()
 {
   printf("--- BATCH 1 TESTS: INITIALIZATION ---\n");
@@ -150,6 +151,90 @@ void runtime_test()
   } else {
     printf("[PASSED]\n");    
   }
+  
+  /**
+    * Runtime test
+    */
+
+  const size_t RUNTIME_COLLECTION_SIZE = 50; 
+  TaskCollection* runtime_task_collection = create_task_collection(RUNTIME_COLLECTION_SIZE);
+  TaskClass* runtime_task_class = NULL;
+  Task* runtime_task = NULL;
+
+  system("cat ./misc/logo.txt");
+
+  if (runtime_task_collection == NULL)
+  {
+    printf("Runtime test error: failed to create task collection\n");
+    return;
+  }
+  while (1) 
+  {
+    char class_name[1024];
+    char task_content[1024];
+    char yn[16];
+
+    printf("Enter todo class/category: ");
+    fgets(class_name, sizeof(class_name), stdin);
+    if ( strlen(class_name) > 0 && (class_name[ strlen(class_name) - 1] == '\n') )
+    {
+      class_name[ strlen(class_name) - 1 ] = '\0';
+    }
+
+    if ( strcmp(class_name, "quit") == 0 ) {
+      return;
+    }
+
+    printf("Enter description: ");
+    fgets(task_content, sizeof(task_content), stdin);
+    if ( strlen(task_content) > 0 && (task_content[ strlen(task_content) - 1] == '\n') )
+    {
+      task_content[ strlen(task_content) - 1 ] = '\0';
+    }
+
+    printf("--- Summary ---\nclass: '%s'\ncontent:'%s'\n---------------\nContinue? (y/n) ", class_name, task_content);
+    fgets(yn, sizeof(yn), stdin);
+    if ( strlen(yn) > 0 && (yn[ strlen(yn) - 1] == '\n') )
+    {
+      yn[ strlen(yn) - 1 ] = '\0';
+    }
+    if ( strcmp(&yn[0], "y") != 0 )
+    {
+      continue;
+    }
+
+    system("clear");
+
+    runtime_task = create_task(class_name, task_content);
+    if (runtime_task == NULL)
+    {
+      printf("Runtime test error: failed to create task\n");
+      return;
+    }
+
+    runtime_task_class =get_task_class(runtime_task_collection, class_name);
+    if (runtime_task_class == NULL) // class does not exist; create it
+    {
+      printf("Class '%s' does not exist. Creating...\n", class_name);
+      add_task_class(runtime_task_collection, create_task_class(class_name, RUNTIME_COLLECTION_SIZE)); 
+      runtime_task_class = get_task_class(runtime_task_collection, class_name);
+      add_task(runtime_task_class, runtime_task);
+      printf("Appended task to '%s'\n\n", class_name);
+    } else {
+      if ( get_task(runtime_task_class, task_content) != NULL ) 
+      {
+        printf("Runtime error: task already exists in '%s'\n", class_name);
+        continue;
+      }
+      printf("Appending task to '%s'...\n", class_name);
+      add_task(runtime_task_class, runtime_task);
+      printf("Appended task to '%s'\n\n", class_name);
+    }
+    printf("Enter category name 'quit' to exit runtime test\n");
+    system("sleep 4");
+    system("clear");
+  }
+
   return;
 }
 
