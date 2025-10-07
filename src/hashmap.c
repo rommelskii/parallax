@@ -5,7 +5,22 @@
 
 #include "hashmap.h"
 
-unsigned long hash_function(const char* str) {
+/**
+  * @file hashmap.c
+  *
+  * @brief Implementation of the hash map procedures
+  */
+
+
+/**
+  * @brief Transforms a string to a hash number
+  *
+  * Utilizes djb2 in performing the transformation
+  *
+  * @param str Pointer to the string to be transformed
+  * @return Hashed number corresponding to the string argument
+  */
+static unsigned long hash_function(const char* str) {
     unsigned long hash = 5381;
     int c;
     while ((c = *str++)) {
@@ -14,7 +29,6 @@ unsigned long hash_function(const char* str) {
     return hash;
 }
 
-// Creates and initializes a new hash map
 HashMap* hashmap_create(size_t table_size) {
     // Allocate memory for the map structure
     HashMap* map = (HashMap*)malloc(sizeof(HashMap));

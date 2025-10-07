@@ -28,13 +28,6 @@ typedef struct HashMap {
     size_t table_size;  /**< Fixed size of the hash table*/
 } HashMap;
 
-/**
-  * @brief Transforms a string (key) to a hash number
-  *
-  * @param str Pointer to the string to be transformed
-  * @return Hash number in unsigned long format
-  */
-unsigned long hash_function(const char* str);
 
 /**
   * @brief Creates a hashmap of a fixed size

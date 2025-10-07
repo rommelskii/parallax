@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>parallax: include/hashmap.h File Reference</title>
+<title>parallax: src/hashmap.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('hashmap_8h.html','',''); });
+$(function(){initNavTree('hashmap_8c.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -89,31 +89,18 @@ $(function(){initNavTree('hashmap_8h.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">hashmap.h File Reference</div></div>
+  <div class="headertitle"><div class="title">hashmap.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Contains the structures and procedures for hashmap-related operations.  
+<p>Implementation of the hash map procedures.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="task_8h_source.html">task.h</a>&quot;</code><br />
-</div>
-<p><a href="hashmap_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:Entry" id="r_Entry"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_entry.html">Entry</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linked list node definition of an entry in a hash map.  <a href="struct_entry.html#details">More...</a><br /></td></tr>
-<tr class="memitem:HashMap" id="r_HashMap"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_hash_map.html">HashMap</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashmap structure.  <a href="struct_hash_map.html#details">More...</a><br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a65b0d0252adaf76f9ce2004299344de8" id="r_a65b0d0252adaf76f9ce2004299344de8"><td class="memItemLeft" align="right" valign="top"><a id="a65b0d0252adaf76f9ce2004299344de8" name="a65b0d0252adaf76f9ce2004299344de8"></a>
-typedef struct Entry&#160;</td><td class="memItemRight" valign="bottom"><b>Entry</b></td></tr>
-<tr class="memdesc:a65b0d0252adaf76f9ce2004299344de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linked list node definition of an entry in a hash map. <br /></td></tr>
-<tr class="memitem:aebe1ad36f469ee273aa6f228ab38501c" id="r_aebe1ad36f469ee273aa6f228ab38501c"><td class="memItemLeft" align="right" valign="top">typedef struct HashMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebe1ad36f469ee273aa6f228ab38501c">HashMap</a></td></tr>
-<tr class="memdesc:aebe1ad36f469ee273aa6f228ab38501c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashmap structure.  <br /></td></tr>
-</table><table class="memberdecls">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="hashmap_8h_source.html">hashmap.h</a>&quot;</code><br />
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0cb8aef10853421aa56a9a19c049c446" id="r_a0cb8aef10853421aa56a9a19c049c446"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_hash_map.html">HashMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cb8aef10853421aa56a9a19c049c446">hashmap_create</a> (size_t table_size)</td></tr>
@@ -128,26 +115,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a6baefe99b1a8ec93c91f581047c82c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a hashmap to memory.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains the structures and procedures for hashmap-related operations. </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
-<a id="aebe1ad36f469ee273aa6f228ab38501c" name="aebe1ad36f469ee273aa6f228ab38501c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebe1ad36f469ee273aa6f228ab38501c">&#9670;&#160;</a></span>HashMap</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct HashMap HashMap</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Hashmap structure. </p>
-<p>Contains an array of <a class="el" href="struct_entry.html" title="Linked list node definition of an entry in a hash map.">Entry</a> pointer nodes with a fixed size </p>
-
-</div>
-</div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<div class="textblock"><p>Implementation of the hash map procedures. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a0cb8aef10853421aa56a9a19c049c446" name="a0cb8aef10853421aa56a9a19c049c446"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0cb8aef10853421aa56a9a19c049c446">&#9670;&#160;</a></span>hashmap_create()</h2>
 
@@ -309,7 +278,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="hashmap_8h.html">hashmap.h</a></li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="hashmap_8c.html">hashmap.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
