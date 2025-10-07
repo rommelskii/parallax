@@ -22,6 +22,9 @@ OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 docs: 
 	doxygen Doxyfile
 
+clean-docs:
+	rm -rf docs
+
 all: $(TARGET)
 
 # Rule to link the final executable.
