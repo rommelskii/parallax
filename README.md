@@ -2,6 +2,8 @@
 
 Parallax is a lightweight, command-line-driven task management tool designed for simplicity and efficiency. It allows users to quickly manage tasks, notes, and projects directly from their terminal.
 
+Documentation: https://rommelskii.github.io/parallax
+
 ---
 
 ## Instructions for runtime testing
