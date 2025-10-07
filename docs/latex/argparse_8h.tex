@@ -1,0 +1,111 @@
+\doxysection{include/argparse.h File Reference}
+\hypertarget{argparse_8h}{}\label{argparse_8h}\index{include/argparse.h@{include/argparse.h}}
+
+
+Contains functions for extracting content from the argument vector.  
+
+
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12a}{FLAG\+\_\+\+TYPE}} \{ \newline
+\mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1}{FLAG\+\_\+\+CREATE}}
+, \mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31}{FLAG\+\_\+\+MODIFY}}
+, \mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59}{FLAG\+\_\+\+REMOVE}}
+, \mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712}{FLAG\+\_\+\+LIST}}
+, \newline
+\mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31}{FLAG\+\_\+\+INVALID}}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible flag types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12a}{FLAG\+\_\+\+TYPE}} \mbox{\hyperlink{argparse_8h_ac71f896e5c2c950c5420f949d11ab36a}{get\+\_\+flag}} (char \texorpdfstring{$\ast$}{*}flag\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Assigns a string to its corresponding flag type. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{argparse_8h_aff3e4962b789f4b8de2d4f690ef62412}{get\+\_\+content\+\_\+arg}} (char \texorpdfstring{$\ast$}{*}str\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Safely extracts any of the non-\/flag arguments in the argument vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains functions for extracting content from the argument vector. 
+
+Manipulates the caller buffer to extract the content. 
+
+\label{doc-enum-members}
+\Hypertarget{argparse_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{argparse_8h_a2300e17cd1703d3d3e50f506463de12a}\index{argparse.h@{argparse.h}!FLAG\_TYPE@{FLAG\_TYPE}}
+\index{FLAG\_TYPE@{FLAG\_TYPE}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_TYPE}{FLAG\_TYPE}}
+{\footnotesize\ttfamily \label{argparse_8h_a2300e17cd1703d3d3e50f506463de12a} 
+enum \mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12a}{FLAG\+\_\+\+TYPE}}}
+
+
+
+Possible flag types. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAG\_CREATE@{FLAG\_CREATE}!argparse.h@{argparse.h}}\index{argparse.h@{argparse.h}!FLAG\_CREATE@{FLAG\_CREATE}}}\Hypertarget{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1}\label{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1} 
+FLAG\+\_\+\+CREATE&-\/c \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAG\_MODIFY@{FLAG\_MODIFY}!argparse.h@{argparse.h}}\index{argparse.h@{argparse.h}!FLAG\_MODIFY@{FLAG\_MODIFY}}}\Hypertarget{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31}\label{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31} 
+FLAG\+\_\+\+MODIFY&-\/m \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAG\_REMOVE@{FLAG\_REMOVE}!argparse.h@{argparse.h}}\index{argparse.h@{argparse.h}!FLAG\_REMOVE@{FLAG\_REMOVE}}}\Hypertarget{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59}\label{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59} 
+FLAG\+\_\+\+REMOVE&-\/r \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAG\_LIST@{FLAG\_LIST}!argparse.h@{argparse.h}}\index{argparse.h@{argparse.h}!FLAG\_LIST@{FLAG\_LIST}}}\Hypertarget{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712}\label{argparse_8h_a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712} 
+FLAG\+\_\+\+LIST&-\/l \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAG\_INVALID@{FLAG\_INVALID}!argparse.h@{argparse.h}}\index{argparse.h@{argparse.h}!FLAG\_INVALID@{FLAG\_INVALID}}}\Hypertarget{argparse_8h_a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31}\label{argparse_8h_a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31} 
+FLAG\+\_\+\+INVALID&invalid/malformed flag \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{argparse_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{argparse_8h_aff3e4962b789f4b8de2d4f690ef62412}\index{argparse.h@{argparse.h}!get\_content\_arg@{get\_content\_arg}}
+\index{get\_content\_arg@{get\_content\_arg}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{get\_content\_arg()}{get\_content\_arg()}}
+{\footnotesize\ttfamily \label{argparse_8h_aff3e4962b789f4b8de2d4f690ef62412} 
+const char \texorpdfstring{$\ast$}{*} get\+\_\+content\+\_\+arg (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str\+\_\+arg}{}\end{DoxyParamCaption})}
+
+
+
+Safely extracts any of the non-\/flag arguments in the argument vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+\_\+arg} & Pointer to the argument string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the extracted argument. 
+\end{DoxyReturn}
+\Hypertarget{argparse_8h_ac71f896e5c2c950c5420f949d11ab36a}\index{argparse.h@{argparse.h}!get\_flag@{get\_flag}}
+\index{get\_flag@{get\_flag}!argparse.h@{argparse.h}}
+\doxysubsubsection{\texorpdfstring{get\_flag()}{get\_flag()}}
+{\footnotesize\ttfamily \label{argparse_8h_ac71f896e5c2c950c5420f949d11ab36a} 
+\mbox{\hyperlink{argparse_8h_a2300e17cd1703d3d3e50f506463de12a}{FLAG\+\_\+\+TYPE}} get\+\_\+flag (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{flag\+\_\+string}{}\end{DoxyParamCaption})}
+
+
+
+Assigns a string to its corresponding flag type. 
+
+Compares the argument with the possible flags.
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+\_\+string} & Pointer to the flag string in the argument vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Flag type corresponding to the input flag string 
+\end{DoxyReturn}
