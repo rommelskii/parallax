@@ -113,8 +113,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a48d3ccc21ddc04633ef7cd7e80dbb987" id="r_a48d3ccc21ddc04633ef7cd7e80dbb987"><td class="memItemLeft" align="right" valign="top"><a id="a48d3ccc21ddc04633ef7cd7e80dbb987" name="a48d3ccc21ddc04633ef7cd7e80dbb987"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_TABLE_SIZE</b>&#160;&#160;&#160;50</td></tr>
+<tr class="memitem:a48d3ccc21ddc04633ef7cd7e80dbb987" id="r_a48d3ccc21ddc04633ef7cd7e80dbb987"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48d3ccc21ddc04633ef7cd7e80dbb987">MAX_TABLE_SIZE</a>&#160;&#160;&#160;50</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -151,7 +150,26 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains structures and functions for handling task-related operations. </p>
 <p>Defines the schema of tasks, task classes, and task collections. It also contains the procedures for creating, modifying, removing, and destroying the task structures. </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+
+<p class="definition">Definition in file <a class="el" href="task_8h_source.html">task.h</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a48d3ccc21ddc04633ef7cd7e80dbb987" name="a48d3ccc21ddc04633ef7cd7e80dbb987"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48d3ccc21ddc04633ef7cd7e80dbb987">&#9670;&#160;</a></span>MAX_TABLE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_TABLE_SIZE&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="task_8h_source.html#l00009">9</a> of file <a class="el" href="task_8h_source.html">task.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a1d107d116293b1dddca4e5d3d2898d00" name="a1d107d116293b1dddca4e5d3d2898d00"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d107d116293b1dddca4e5d3d2898d00">&#9670;&#160;</a></span>Task</h2>
 
@@ -232,6 +250,31 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00065">65</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   66</span>{</div>
+<div class="line"><span class="lineno">   67</span>  <span class="keywordflow">if</span> ( task_class == NULL || new_task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a> == NULL ) </div>
+<div class="line"><span class="lineno">   68</span>  {</div>
+<div class="line"><span class="lineno">   69</span>    printf(<span class="stringliteral">&quot;Task class error: task class or key is null\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   71</span>  }</div>
+<div class="line"><span class="lineno">   72</span>  <span class="keywordflow">if</span> ( new_task == NULL ) </div>
+<div class="line"><span class="lineno">   73</span>  {</div>
+<div class="line"><span class="lineno">   74</span>    printf(<span class="stringliteral">&quot;Task class error: new task to be added is null\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   76</span>  }</div>
+<div class="line"><span class="lineno">   77</span>  <span class="keywordflow">if</span> ( task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a493ef2e3628bfff71bec9cbaede1f974">table_size</a> &lt;= 0 ) </div>
+<div class="line"><span class="lineno">   78</span>  {</div>
+<div class="line"><span class="lineno">   79</span>    printf(<span class="stringliteral">&quot;Task class error: invalid table size (%zu)&quot;</span>, task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a493ef2e3628bfff71bec9cbaede1f974">table_size</a>);</div>
+<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   81</span>  }</div>
+<div class="line"><span class="lineno">   82</span>  </div>
+<div class="line"><span class="lineno">   83</span>  <a class="code hl_function" href="hashmap_8c.html#a3e617cb0078fa219afc6d110d80f9313">hashmap_set</a>(task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a93abfa0776f443fb390c785ed1f36020">task_class_table</a>, new_task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a>, new_task);</div>
+<div class="line"><span class="lineno">   84</span>}</div>
+<div class="ttc" id="ahashmap_8c_html_a3e617cb0078fa219afc6d110d80f9313"><div class="ttname"><a href="hashmap_8c.html#a3e617cb0078fa219afc6d110d80f9313">hashmap_set</a></div><div class="ttdeci">void hashmap_set(HashMap *map, char *key, void *value)</div><div class="ttdoc">Adds an entry to a hashmap by a key string and value.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8c_source.html#l00044">hashmap.c:44</a></div></div>
+<div class="ttc" id="astruct_task_class_html_a493ef2e3628bfff71bec9cbaede1f974"><div class="ttname"><a href="struct_task_class.html#a493ef2e3628bfff71bec9cbaede1f974">TaskClass::table_size</a></div><div class="ttdeci">size_t table_size</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00042">task.h:42</a></div></div>
+<div class="ttc" id="astruct_task_class_html_a93abfa0776f443fb390c785ed1f36020"><div class="ttname"><a href="struct_task_class.html#a93abfa0776f443fb390c785ed1f36020">TaskClass::task_class_table</a></div><div class="ttdeci">HashMap * task_class_table</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00043">task.h:43</a></div></div>
+<div class="ttc" id="astruct_task_html_a0d43b97ce3b9044d5768612b138d1be7"><div class="ttname"><a href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">Task::task_content</a></div><div class="ttdeci">char * task_content</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00031">task.h:31</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5132e4d20df9d7c19ed93f36099aeef9" name="a5132e4d20df9d7c19ed93f36099aeef9"></a>
@@ -262,6 +305,21 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00106">106</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  107</span>{</div>
+<div class="line"><span class="lineno">  108</span>  <span class="keywordflow">if</span> (task_collection == NULL || task_class == NULL) </div>
+<div class="line"><span class="lineno">  109</span>  {</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  111</span>  }</div>
+<div class="line"><span class="lineno">  112</span>  <span class="keywordflow">if</span> (task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a28df81df030450cac69837d417da7495">task_class_name</a> == NULL)</div>
+<div class="line"><span class="lineno">  113</span>  {</div>
+<div class="line"><span class="lineno">  114</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  115</span>  }</div>
+<div class="line"><span class="lineno">  116</span>  <a class="code hl_function" href="hashmap_8c.html#a3e617cb0078fa219afc6d110d80f9313">hashmap_set</a>(task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ac572f6879d814a7bcf888e7663919bae">task_collection</a>, task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a28df81df030450cac69837d417da7495">task_class_name</a>, task_class);</div>
+<div class="line"><span class="lineno">  117</span>}</div>
+<div class="ttc" id="astruct_task_class_html_a28df81df030450cac69837d417da7495"><div class="ttname"><a href="struct_task_class.html#a28df81df030450cac69837d417da7495">TaskClass::task_class_name</a></div><div class="ttdeci">char * task_class_name</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00041">task.h:41</a></div></div>
+<div class="ttc" id="astruct_task_collection_html_ac572f6879d814a7bcf888e7663919bae"><div class="ttname"><a href="struct_task_collection.html#ac572f6879d814a7bcf888e7663919bae">TaskCollection::task_collection</a></div><div class="ttdeci">HashMap * task_collection</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00054">task.h:54</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaa3a400afc1db157b81f5e3a9f246b89" name="aaa3a400afc1db157b81f5e3a9f246b89"></a>
@@ -294,6 +352,16 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the created task</dd></dl>
 <p>TASK INITIALIZERS </p>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00014">14</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>{</div>
+<div class="line"><span class="lineno">   16</span>  <a class="code hl_struct" href="struct_task.html">Task</a>* task = (<a class="code hl_struct" href="struct_task.html">Task</a>*)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_task.html">Task</a>));</div>
+<div class="line"><span class="lineno">   17</span>  task-&gt;<a class="code hl_variable" href="struct_task.html#a78ded3fb3637b0180a422dd4ebf355fc">task_class</a> = class_of_task;</div>
+<div class="line"><span class="lineno">   18</span>  task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a> = task_content;</div>
+<div class="line"><span class="lineno">   19</span>  <span class="keywordflow">return</span> task;</div>
+<div class="line"><span class="lineno">   20</span>}</div>
+<div class="ttc" id="astruct_task_html"><div class="ttname"><a href="struct_task.html">Task</a></div><div class="ttdoc">A basic task.</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00028">task.h:29</a></div></div>
+<div class="ttc" id="astruct_task_html_a78ded3fb3637b0180a422dd4ebf355fc"><div class="ttname"><a href="struct_task.html#a78ded3fb3637b0180a422dd4ebf355fc">Task::task_class</a></div><div class="ttdeci">char * task_class</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00030">task.h:30</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="adbc01bdb09c7f6d5c6dae9ddc45d0aa7" name="adbc01bdb09c7f6d5c6dae9ddc45d0aa7"></a>
@@ -325,6 +393,17 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the created task class </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00022">22</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>{</div>
+<div class="line"><span class="lineno">   24</span>  <a class="code hl_struct" href="struct_task_class.html">TaskClass</a>* task_class = (<a class="code hl_struct" href="struct_task_class.html">TaskClass</a>*)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_task_class.html">TaskClass</a>));</div>
+<div class="line"><span class="lineno">   25</span>  task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a28df81df030450cac69837d417da7495">task_class_name</a> = class_name;</div>
+<div class="line"><span class="lineno">   26</span>  task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a493ef2e3628bfff71bec9cbaede1f974">table_size</a> = class_size;</div>
+<div class="line"><span class="lineno">   27</span>  task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a93abfa0776f443fb390c785ed1f36020">task_class_table</a> = <a class="code hl_function" href="hashmap_8c.html#a0cb8aef10853421aa56a9a19c049c446">hashmap_create</a>(class_size);</div>
+<div class="line"><span class="lineno">   28</span>  <span class="keywordflow">return</span> task_class;</div>
+<div class="line"><span class="lineno">   29</span>}</div>
+<div class="ttc" id="ahashmap_8c_html_a0cb8aef10853421aa56a9a19c049c446"><div class="ttname"><a href="hashmap_8c.html#a0cb8aef10853421aa56a9a19c049c446">hashmap_create</a></div><div class="ttdeci">HashMap * hashmap_create(size_t table_size)</div><div class="ttdoc">Creates a hashmap of a fixed size.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8c_source.html#l00035">hashmap.c:35</a></div></div>
+<div class="ttc" id="astruct_task_class_html"><div class="ttname"><a href="struct_task_class.html">TaskClass</a></div><div class="ttdoc">A task class containing other tasks.</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00039">task.h:40</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7e9fd7837ba0e97f983c7d93c626495d" name="a7e9fd7837ba0e97f983c7d93c626495d"></a>
@@ -351,6 +430,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the created task collection </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00031">31</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>{</div>
+<div class="line"><span class="lineno">   33</span>  <a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>* task_collection = (<a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>*)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>)); </div>
+<div class="line"><span class="lineno">   34</span>  task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ad4aa2ee0d810aca5873a6edce8aa1510">collection_size</a> = collection_size;</div>
+<div class="line"><span class="lineno">   35</span>  task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ac572f6879d814a7bcf888e7663919bae">task_collection</a> = <a class="code hl_function" href="hashmap_8c.html#a0cb8aef10853421aa56a9a19c049c446">hashmap_create</a>(collection_size);</div>
+<div class="line"><span class="lineno">   36</span>  <span class="keywordflow">return</span> task_collection;</div>
+<div class="line"><span class="lineno">   37</span>}</div>
+<div class="ttc" id="astruct_task_collection_html"><div class="ttname"><a href="struct_task_collection.html">TaskCollection</a></div><div class="ttdoc">A task collection containing other classes.</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00052">task.h:53</a></div></div>
+<div class="ttc" id="astruct_task_collection_html_ad4aa2ee0d810aca5873a6edce8aa1510"><div class="ttname"><a href="struct_task_collection.html#ad4aa2ee0d810aca5873a6edce8aa1510">TaskCollection::collection_size</a></div><div class="ttdeci">size_t collection_size</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00055">task.h:55</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab42df9a98c05b82708e257aec331db2a" name="ab42df9a98c05b82708e257aec331db2a"></a>
@@ -383,6 +472,28 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the task found. Returns NULL if not found</dd></dl>
 <p>TASK GETTERS </p>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00044">44</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   45</span>{</div>
+<div class="line"><span class="lineno">   46</span>  <span class="keywordflow">if</span> ( task_class == NULL || key == NULL ) </div>
+<div class="line"><span class="lineno">   47</span>  {</div>
+<div class="line"><span class="lineno">   48</span>    printf(<span class="stringliteral">&quot;Task class error: task class or key is null\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">   50</span>  }</div>
+<div class="line"><span class="lineno">   51</span>  <span class="keywordflow">if</span> (task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a493ef2e3628bfff71bec9cbaede1f974">table_size</a> &lt;= 0) </div>
+<div class="line"><span class="lineno">   52</span>  {</div>
+<div class="line"><span class="lineno">   53</span>    printf(<span class="stringliteral">&quot;Task class error: invalid table size (%zu)&quot;</span>, task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a493ef2e3628bfff71bec9cbaede1f974">table_size</a>);</div>
+<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">   55</span>  }</div>
+<div class="line"><span class="lineno">   56</span>  <span class="keywordtype">void</span>* ret = <a class="code hl_function" href="hashmap_8c.html#ae6c81468c886de40141e92086eeb13bb">hashmap_get</a>(task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a93abfa0776f443fb390c785ed1f36020">task_class_table</a>, key);</div>
+<div class="line"><span class="lineno">   57</span>  <span class="keywordflow">if</span> (ret == NULL)</div>
+<div class="line"><span class="lineno">   58</span>  {</div>
+<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">   60</span>  }</div>
+<div class="line"><span class="lineno">   61</span>  <span class="keywordflow">return</span> (<a class="code hl_struct" href="struct_task.html">Task</a>*)ret;</div>
+<div class="line"><span class="lineno">   62</span>  <span class="comment">//return task_get(task_class-&gt;task_class_table, key, task_class-&gt;table_size);</span></div>
+<div class="line"><span class="lineno">   63</span>}</div>
+<div class="ttc" id="ahashmap_8c_html_ae6c81468c886de40141e92086eeb13bb"><div class="ttname"><a href="hashmap_8c.html#ae6c81468c886de40141e92086eeb13bb">hashmap_get</a></div><div class="ttdeci">void * hashmap_get(HashMap *map, char *key)</div><div class="ttdoc">Finds an entry in a non-empty hashmap by a key.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8c_source.html#l00070">hashmap.c:70</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a33fd1ee894c6b6ccfd29ee0fe8a9c61b" name="a33fd1ee894c6b6ccfd29ee0fe8a9c61b"></a>
@@ -414,6 +525,26 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the task class found. Returns NULL if not found </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00086">86</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>{</div>
+<div class="line"><span class="lineno">   88</span>  <span class="keywordflow">if</span> (task_collection == NULL || key == NULL) </div>
+<div class="line"><span class="lineno">   89</span>  {</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">   91</span>  }</div>
+<div class="line"><span class="lineno">   92</span>  <span class="keywordflow">if</span> (task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ad4aa2ee0d810aca5873a6edce8aa1510">collection_size</a> &lt;= 0)</div>
+<div class="line"><span class="lineno">   93</span>  {</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">   95</span>  }</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>  <span class="keywordtype">void</span>* ret = <a class="code hl_function" href="hashmap_8c.html#ae6c81468c886de40141e92086eeb13bb">hashmap_get</a>(task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ac572f6879d814a7bcf888e7663919bae">task_collection</a>, key);</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>  <span class="keywordflow">if</span> (ret == NULL)</div>
+<div class="line"><span class="lineno">  100</span>  {</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  102</span>  }</div>
+<div class="line"><span class="lineno">  103</span>  <span class="keywordflow">return</span> (<a class="code hl_struct" href="struct_task_class.html">TaskClass</a>*)ret;</div>
+<div class="line"><span class="lineno">  104</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="afc226598ebd0ed74d1b3336d048dcef7" name="afc226598ebd0ed74d1b3336d048dcef7"></a>
@@ -439,6 +570,15 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00158">158</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  159</span>{</div>
+<div class="line"><span class="lineno">  160</span>  <span class="keywordflow">if</span> (task == NULL)</div>
+<div class="line"><span class="lineno">  161</span>  {</div>
+<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  163</span>  }</div>
+<div class="line"><span class="lineno">  164</span>  printf(<span class="stringliteral">&quot;Task class: %s\nContent: %s\n&quot;</span>, task-&gt;<a class="code hl_variable" href="struct_task.html#a78ded3fb3637b0180a422dd4ebf355fc">task_class</a>, task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a>);</div>
+<div class="line"><span class="lineno">  165</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a120e612a3c32fca221e266de9d907713" name="a120e612a3c32fca221e266de9d907713"></a>
@@ -470,6 +610,20 @@ Functions</h2></td></tr>
 </dl>
 <p>END OF TASK CLASS MUTATORS Destructor implementation </p>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00128">128</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
+<div class="line"><span class="lineno">  130</span>  <span class="keywordflow">if</span> (task_class == NULL || task_content == NULL)</div>
+<div class="line"><span class="lineno">  131</span>  {</div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  133</span>  }</div>
+<div class="line"><span class="lineno">  134</span>  <span class="keywordflow">if</span> (task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a93abfa0776f443fb390c785ed1f36020">task_class_table</a> == NULL)</div>
+<div class="line"><span class="lineno">  135</span>  {</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">return</span>; </div>
+<div class="line"><span class="lineno">  137</span>  }</div>
+<div class="line"><span class="lineno">  138</span>  <a class="code hl_function" href="hashmap_8c.html#a911864551888d875bb0ca4860679e331">hashmap_elem_remove</a>(task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a93abfa0776f443fb390c785ed1f36020">task_class_table</a>, task_content);</div>
+<div class="line"><span class="lineno">  139</span>}</div>
+<div class="ttc" id="ahashmap_8c_html_a911864551888d875bb0ca4860679e331"><div class="ttname"><a href="hashmap_8c.html#a911864551888d875bb0ca4860679e331">hashmap_elem_remove</a></div><div class="ttdeci">void hashmap_elem_remove(HashMap *map, char *key)</div><div class="ttdoc">Removes an entry in a hashmap by its key.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8c_source.html#l00087">hashmap.c:87</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaa81c99c43eb01414d9d2b129938a81e" name="aaa81c99c43eb01414d9d2b129938a81e"></a>
@@ -500,6 +654,19 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="task_8c_source.html#l00141">141</a> of file <a class="el" href="task_8c_source.html">task.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  142</span>{</div>
+<div class="line"><span class="lineno">  143</span>  <span class="keywordflow">if</span> (task_collection == NULL || class_name == NULL)</div>
+<div class="line"><span class="lineno">  144</span>  {</div>
+<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  146</span>  }</div>
+<div class="line"><span class="lineno">  147</span>  <span class="keywordflow">if</span> (task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ac572f6879d814a7bcf888e7663919bae">task_collection</a> == NULL)</div>
+<div class="line"><span class="lineno">  148</span>  {</div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">return</span>; </div>
+<div class="line"><span class="lineno">  150</span>  }</div>
+<div class="line"><span class="lineno">  151</span>  <a class="code hl_function" href="hashmap_8c.html#a911864551888d875bb0ca4860679e331">hashmap_elem_remove</a>(task_collection-&gt;<a class="code hl_variable" href="struct_task_collection.html#ac572f6879d814a7bcf888e7663919bae">task_collection</a>, class_name);</div>
+<div class="line"><span class="lineno">  152</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

@@ -121,6 +121,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions for extracting content from the argument vector. </p>
 <p>Manipulates the caller buffer to extract the content. </p>
+
+<p class="definition">Definition in file <a class="el" href="argparse_8h_source.html">argparse.h</a>.</p>
 </div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="a2300e17cd1703d3d3e50f506463de12a" name="a2300e17cd1703d3d3e50f506463de12a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2300e17cd1703d3d3e50f506463de12a">&#9670;&#160;</a></span>FLAG_TYPE</h2>
@@ -148,6 +150,21 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
+<p class="definition">Definition at line <a class="el" href="argparse_8h_source.html#l00014">14</a> of file <a class="el" href="argparse_8h_source.html">argparse.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>{</div>
+<div class="line"><span class="lineno">   16</span>  <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1">FLAG_CREATE</a>, </div>
+<div class="line"><span class="lineno">   17</span>  <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31">FLAG_MODIFY</a>, </div>
+<div class="line"><span class="lineno">   18</span>  <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59">FLAG_REMOVE</a>, </div>
+<div class="line"><span class="lineno">   19</span>  <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712">FLAG_LIST</a>, </div>
+<div class="line"><span class="lineno">   20</span>  <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31">FLAG_INVALID</a> </div>
+<div class="line"><span class="lineno">   21</span>} <a class="code hl_enumeration" href="#a2300e17cd1703d3d3e50f506463de12a">FLAG_TYPE</a>;</div>
+<div class="ttc" id="aargparse_8h_html_a2300e17cd1703d3d3e50f506463de12a"><div class="ttname"><a href="#a2300e17cd1703d3d3e50f506463de12a">FLAG_TYPE</a></div><div class="ttdeci">FLAG_TYPE</div><div class="ttdoc">Possible flag types.</div><div class="ttdef"><b>Definition</b> <a href="argparse_8h_source.html#l00014">argparse.h:15</a></div></div>
+<div class="ttc" id="aargparse_8h_html_a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59"><div class="ttname"><a href="#a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59">FLAG_REMOVE</a></div><div class="ttdeci">@ FLAG_REMOVE</div><div class="ttdef"><b>Definition</b> <a href="argparse_8h_source.html#l00018">argparse.h:18</a></div></div>
+<div class="ttc" id="aargparse_8h_html_a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712"><div class="ttname"><a href="#a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712">FLAG_LIST</a></div><div class="ttdeci">@ FLAG_LIST</div><div class="ttdef"><b>Definition</b> <a href="argparse_8h_source.html#l00019">argparse.h:19</a></div></div>
+<div class="ttc" id="aargparse_8h_html_a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1"><div class="ttname"><a href="#a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1">FLAG_CREATE</a></div><div class="ttdeci">@ FLAG_CREATE</div><div class="ttdef"><b>Definition</b> <a href="argparse_8h_source.html#l00016">argparse.h:16</a></div></div>
+<div class="ttc" id="aargparse_8h_html_a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31"><div class="ttname"><a href="#a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31">FLAG_MODIFY</a></div><div class="ttdeci">@ FLAG_MODIFY</div><div class="ttdef"><b>Definition</b> <a href="argparse_8h_source.html#l00017">argparse.h:17</a></div></div>
+<div class="ttc" id="aargparse_8h_html_a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31"><div class="ttname"><a href="#a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31">FLAG_INVALID</a></div><div class="ttdeci">@ FLAG_INVALID</div><div class="ttdef"><b>Definition</b> <a href="argparse_8h_source.html#l00020">argparse.h:20</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
@@ -175,6 +192,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the extracted argument. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="argparse_8c_source.html#l00038">38</a> of file <a class="el" href="argparse_8c_source.html">argparse.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
+<div class="line"><span class="lineno">   40</span>  <span class="keywordtype">size_t</span> arg_len = strnlen(str_arg, MAX_CONTENT_LENGTH); </div>
+<div class="line"><span class="lineno">   41</span>  <span class="keywordtype">char</span>* ret = (<span class="keywordtype">char</span>*)malloc(arg_len+1); <span class="comment">// +1 for null term</span></div>
+<div class="line"><span class="lineno">   42</span>  strncpy(ret, str_arg, arg_len+1);</div>
+<div class="line"><span class="lineno">   43</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">   44</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac71f896e5c2c950c5420f949d11ab36a" name="ac71f896e5c2c950c5420f949d11ab36a"></a>
@@ -202,6 +227,35 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Flag type corresponding to the input flag string </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="argparse_8c_source.html#l00009">9</a> of file <a class="el" href="argparse_8c_source.html">argparse.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   10</span>{</div>
+<div class="line"><span class="lineno">   11</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> ARG_FLAG_LENGTH = strnlen(flag_string, FLAG_LENGTH);</div>
+<div class="line"><span class="lineno">   12</span>  <span class="keywordflow">if</span> (flag_string == NULL || ARG_FLAG_LENGTH != 2)</div>
+<div class="line"><span class="lineno">   13</span>  {</div>
+<div class="line"><span class="lineno">   14</span>    printf(<span class="stringliteral">&quot;Flag error: empty or malformed flag (len: %zu)\n&quot;</span>, ARG_FLAG_LENGTH);</div>
+<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31">FLAG_INVALID</a>; </div>
+<div class="line"><span class="lineno">   16</span>  }</div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>  <span class="keywordflow">if</span> ( strncmp( flag_string, <span class="stringliteral">&quot;-c&quot;</span>, ARG_FLAG_LENGTH ) == 0 )</div>
+<div class="line"><span class="lineno">   19</span>  {</div>
+<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa4ea6ebec5b43110941f29f58bf1283f1">FLAG_CREATE</a>;</div>
+<div class="line"><span class="lineno">   21</span>  } </div>
+<div class="line"><span class="lineno">   22</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( strncmp ( flag_string, <span class="stringliteral">&quot;-r&quot;</span>, ARG_FLAG_LENGTH) == 0 )</div>
+<div class="line"><span class="lineno">   23</span>  {</div>
+<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa0c0df811e2783b2f2537c79c634e2f59">FLAG_REMOVE</a>;</div>
+<div class="line"><span class="lineno">   25</span>  }</div>
+<div class="line"><span class="lineno">   26</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( strncmp ( flag_string, <span class="stringliteral">&quot;-m&quot;</span>, ARG_FLAG_LENGTH) == 0 )</div>
+<div class="line"><span class="lineno">   27</span>  {</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa606534573139ed7e91de7c9f54c49d31">FLAG_MODIFY</a>;</div>
+<div class="line"><span class="lineno">   29</span>  }</div>
+<div class="line"><span class="lineno">   30</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( strncmp ( flag_string, <span class="stringliteral">&quot;-l&quot;</span>, ARG_FLAG_LENGTH) == 0 )</div>
+<div class="line"><span class="lineno">   31</span>  {</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aa45659bd7025ef4aff765544eb7378712">FLAG_LIST</a>;</div>
+<div class="line"><span class="lineno">   33</span>  }</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>  <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="#a2300e17cd1703d3d3e50f506463de12aabb583cd46042701ac06cabdef2248a31">FLAG_INVALID</a>;</div>
+<div class="line"><span class="lineno">   36</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

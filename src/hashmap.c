@@ -29,6 +29,9 @@ static unsigned long hash_function(const char* str) {
     return hash;
 }
 
+/**
+  * @note Implementation of the hashmap_create function
+  */
 HashMap* hashmap_create(size_t table_size) {
     // Allocate memory for the map structure
     HashMap* map = (HashMap*)malloc(sizeof(HashMap));
