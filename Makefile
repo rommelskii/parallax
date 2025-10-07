@@ -21,9 +21,12 @@ OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 
 docs: 
 	doxygen Doxyfile
+	cp -r ./docs/html/index.html ./docs/
 
 clean-docs:
 	rm -rf docs
+
+
 
 all: $(TARGET)
 
