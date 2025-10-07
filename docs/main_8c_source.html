@@ -111,7 +111,7 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> COLLECTION_SIZE = 100;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  printf(<span class="stringliteral">&quot;Test #1a: Task Collection &quot;</span>);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>* task_collection = create_task_collection(COLLECTION_SIZE);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>* task_collection = <a class="code hl_function" href="task_8c.html#a7e9fd7837ba0e97f983c7d93c626495d">create_task_collection</a>(COLLECTION_SIZE);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">if</span> (task_collection == NULL)</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);</div>
@@ -123,7 +123,7 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  printf(<span class="stringliteral">&quot;Test #1b: Task Class &quot;</span>);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* CLASS_NAME = <span class="stringliteral">&quot;TEST_CLASS&quot;</span>;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> CLASS_SIZE = 50;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_struct" href="struct_task_class.html">TaskClass</a>* task_class = create_task_class(CLASS_NAME, CLASS_SIZE);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_struct" href="struct_task_class.html">TaskClass</a>* task_class = <a class="code hl_function" href="task_8c.html#ad75e84fcb31975c6b22ca56e630dcf01">create_task_class</a>(CLASS_NAME, CLASS_SIZE);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">if</span> (task_class == NULL)</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);</div>
@@ -134,7 +134,7 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  printf(<span class="stringliteral">&quot;Test #1c: Task Creation &quot;</span>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* TASK_CONTENT = <span class="stringliteral">&quot;TEST_CONTENT&quot;</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_struct" href="struct_task.html">Task</a>* task = create_task(CLASS_NAME, TASK_CONTENT);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_struct" href="struct_task.html">Task</a>* task = <a class="code hl_function" href="task_8c.html#aaa3a400afc1db157b81f5e3a9f246b89">create_task</a>(CLASS_NAME, TASK_CONTENT);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">if</span> (task == NULL)</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  {</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);</div>
@@ -194,8 +194,8 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  printf(<span class="stringliteral">&quot;--- BATCH 3: ADDITION TESTS ---\n&quot;</span>);</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  printf(<span class="stringliteral">&quot;Test #3a: Task Addition &quot;</span>);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  add_task(task_class, task);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordflow">if</span> ( get_task(task_class, task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a>) == NULL )</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <a class="code hl_function" href="task_8c.html#af84a26f6b7159176d56038922250d399">add_task</a>(task_class, task);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="task_8c.html#ab42df9a98c05b82708e257aec331db2a">get_task</a>(task_class, task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a>) == NULL )</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  {</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">return</span>;</div>
@@ -205,8 +205,8 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  }</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  printf(<span class="stringliteral">&quot;Test #3b: Task Class Addition &quot;</span>);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  add_task_class(task_collection, task_class);</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keywordflow">if</span> ( get_task_class(task_collection, task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a28df81df030450cac69837d417da7495">task_class_name</a>) == NULL )</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <a class="code hl_function" href="task_8c.html#a5132e4d20df9d7c19ed93f36099aeef9">add_task_class</a>(task_collection, task_class);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="task_8c.html#a33fd1ee894c6b6ccfd29ee0fe8a9c61b">get_task_class</a>(task_collection, task_class-&gt;<a class="code hl_variable" href="struct_task_class.html#a28df81df030450cac69837d417da7495">task_class_name</a>) == NULL )</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  {</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">return</span>;</div>
@@ -219,8 +219,8 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  printf(<span class="stringliteral">&quot;Test #4a: Task Deletion &quot;</span>);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keywordtype">char</span>* content = task-&gt;<a class="code hl_variable" href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">task_content</a>;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  remove_task(task_class, content);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <span class="keywordflow">if</span> ( get_task(task_class, content) != NULL )</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <a class="code hl_function" href="task_8c.html#a120e612a3c32fca221e266de9d907713">remove_task</a>(task_class, content);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="task_8c.html#ab42df9a98c05b82708e257aec331db2a">get_task</a>(task_class, content) != NULL )</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  {</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);    </div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  } <span class="keywordflow">else</span> {</div>
@@ -229,8 +229,8 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  printf(<span class="stringliteral">&quot;Test #4b: Task Class Deletion &quot;</span>);</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">char</span>* <span class="keyword">class </span>= task_class-&gt;task_class_name;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  remove_task_class(task_collection, <span class="keyword">class</span>);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordflow">if</span> ( get_task_class(task_collection, <span class="keyword">class</span>) != NULL )</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <a class="code hl_function" href="task_8c.html#aaa81c99c43eb01414d9d2b129938a81e">remove_task_class</a>(task_collection, <span class="keyword">class</span>);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="task_8c.html#a33fd1ee894c6b6ccfd29ee0fe8a9c61b">get_task_class</a>(task_collection, <span class="keyword">class</span>) != NULL )</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  {</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    printf(<span class="stringliteral">&quot;[FAILED]\n&quot;</span>);    </div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  } <span class="keywordflow">else</span> {</div>
@@ -239,7 +239,7 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  </div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> RUNTIME_COLLECTION_SIZE = 50; </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>* runtime_task_collection = create_task_collection(RUNTIME_COLLECTION_SIZE);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <a class="code hl_struct" href="struct_task_collection.html">TaskCollection</a>* runtime_task_collection = <a class="code hl_function" href="task_8c.html#a7e9fd7837ba0e97f983c7d93c626495d">create_task_collection</a>(RUNTIME_COLLECTION_SIZE);</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <a class="code hl_struct" href="struct_task_class.html">TaskClass</a>* runtime_task_class = NULL;</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <a class="code hl_struct" href="struct_task.html">Task</a>* runtime_task = NULL;</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
@@ -287,29 +287,29 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    system(<span class="stringliteral">&quot;clear&quot;</span>);</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    runtime_task = create_task(class_name, task_content);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    runtime_task = <a class="code hl_function" href="task_8c.html#aaa3a400afc1db157b81f5e3a9f246b89">create_task</a>(class_name, task_content);</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">if</span> (runtime_task == NULL)</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    {</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      printf(<span class="stringliteral">&quot;Runtime test error: failed to create task\n&quot;</span>);</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    }</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    runtime_task_class =get_task_class(runtime_task_collection, class_name);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    runtime_task_class =<a class="code hl_function" href="task_8c.html#a33fd1ee894c6b6ccfd29ee0fe8a9c61b">get_task_class</a>(runtime_task_collection, class_name);</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">if</span> (runtime_task_class == NULL) <span class="comment">// class does not exist; create it</span></div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    {</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>      printf(<span class="stringliteral">&quot;Class &#39;%s&#39; does not exist. Creating...\n&quot;</span>, class_name);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      add_task_class(runtime_task_collection, create_task_class(class_name, RUNTIME_COLLECTION_SIZE)); </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      runtime_task_class = get_task_class(runtime_task_collection, class_name);</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      add_task(runtime_task_class, runtime_task);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <a class="code hl_function" href="task_8c.html#a5132e4d20df9d7c19ed93f36099aeef9">add_task_class</a>(runtime_task_collection, <a class="code hl_function" href="task_8c.html#ad75e84fcb31975c6b22ca56e630dcf01">create_task_class</a>(class_name, RUNTIME_COLLECTION_SIZE)); </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      runtime_task_class = <a class="code hl_function" href="task_8c.html#a33fd1ee894c6b6ccfd29ee0fe8a9c61b">get_task_class</a>(runtime_task_collection, class_name);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <a class="code hl_function" href="task_8c.html#af84a26f6b7159176d56038922250d399">add_task</a>(runtime_task_class, runtime_task);</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      printf(<span class="stringliteral">&quot;Appended task to &#39;%s&#39;\n\n&quot;</span>, class_name);</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <span class="keywordflow">if</span> ( get_task(runtime_task_class, task_content) != NULL ) </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <span class="keywordflow">if</span> ( <a class="code hl_function" href="task_8c.html#ab42df9a98c05b82708e257aec331db2a">get_task</a>(runtime_task_class, task_content) != NULL ) </div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      {</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        printf(<span class="stringliteral">&quot;Runtime error: task already exists in &#39;%s&#39;\n&quot;</span>, class_name);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordflow">continue</span>;</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>      }</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      printf(<span class="stringliteral">&quot;Appending task to &#39;%s&#39;...\n&quot;</span>, class_name);</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>      add_task(runtime_task_class, runtime_task);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>      <a class="code hl_function" href="task_8c.html#af84a26f6b7159176d56038922250d399">add_task</a>(runtime_task_class, runtime_task);</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      printf(<span class="stringliteral">&quot;Appended task to &#39;%s&#39;\n\n&quot;</span>, class_name);</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    }</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    printf(<span class="stringliteral">&quot;Enter category name &#39;quit&#39; to exit runtime test\n&quot;</span>);</div>
@@ -381,6 +381,15 @@ $(function(){initNavTree('main_8c_source.html','',''); });
 <div class="ttc" id="astruct_task_html"><div class="ttname"><a href="struct_task.html">Task</a></div><div class="ttdoc">A basic task.</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00028">task.h:29</a></div></div>
 <div class="ttc" id="astruct_task_html_a0d43b97ce3b9044d5768612b138d1be7"><div class="ttname"><a href="struct_task.html#a0d43b97ce3b9044d5768612b138d1be7">Task::task_content</a></div><div class="ttdeci">char * task_content</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00031">task.h:31</a></div></div>
 <div class="ttc" id="astruct_task_html_a78ded3fb3637b0180a422dd4ebf355fc"><div class="ttname"><a href="struct_task.html#a78ded3fb3637b0180a422dd4ebf355fc">Task::task_class</a></div><div class="ttdeci">char * task_class</div><div class="ttdef"><b>Definition</b> <a href="task_8h_source.html#l00030">task.h:30</a></div></div>
+<div class="ttc" id="atask_8c_html_a120e612a3c32fca221e266de9d907713"><div class="ttname"><a href="task_8c.html#a120e612a3c32fca221e266de9d907713">remove_task</a></div><div class="ttdeci">void remove_task(TaskClass *task_class, char *task_content)</div><div class="ttdoc">Removes a task from a task class by its content.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00140">task.c:140</a></div></div>
+<div class="ttc" id="atask_8c_html_a33fd1ee894c6b6ccfd29ee0fe8a9c61b"><div class="ttname"><a href="task_8c.html#a33fd1ee894c6b6ccfd29ee0fe8a9c61b">get_task_class</a></div><div class="ttdeci">TaskClass * get_task_class(TaskCollection *task_collection, const char *key)</div><div class="ttdoc">Gets a task class by its class name from a task collection.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00098">task.c:98</a></div></div>
+<div class="ttc" id="atask_8c_html_a5132e4d20df9d7c19ed93f36099aeef9"><div class="ttname"><a href="task_8c.html#a5132e4d20df9d7c19ed93f36099aeef9">add_task_class</a></div><div class="ttdeci">void add_task_class(TaskCollection *task_collection, TaskClass *task_class)</div><div class="ttdoc">Adds a task class to a task collection.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00123">task.c:123</a></div></div>
+<div class="ttc" id="atask_8c_html_a7e9fd7837ba0e97f983c7d93c626495d"><div class="ttname"><a href="task_8c.html#a7e9fd7837ba0e97f983c7d93c626495d">create_task_collection</a></div><div class="ttdeci">TaskCollection * create_task_collection(size_t collection_size)</div><div class="ttdoc">Creates a task collection of known size.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00036">task.c:36</a></div></div>
+<div class="ttc" id="atask_8c_html_aaa3a400afc1db157b81f5e3a9f246b89"><div class="ttname"><a href="task_8c.html#aaa3a400afc1db157b81f5e3a9f246b89">create_task</a></div><div class="ttdeci">Task * create_task(char *class_of_task, char *task_content)</div><div class="ttdoc">Creates a task of known class and content.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00016">task.c:16</a></div></div>
+<div class="ttc" id="atask_8c_html_aaa81c99c43eb01414d9d2b129938a81e"><div class="ttname"><a href="task_8c.html#aaa81c99c43eb01414d9d2b129938a81e">remove_task_class</a></div><div class="ttdeci">void remove_task_class(TaskCollection *task_collection, char *class_name)</div><div class="ttdoc">Removes a task class from a task collection.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00156">task.c:156</a></div></div>
+<div class="ttc" id="atask_8c_html_ab42df9a98c05b82708e257aec331db2a"><div class="ttname"><a href="task_8c.html#ab42df9a98c05b82708e257aec331db2a">get_task</a></div><div class="ttdeci">Task * get_task(TaskClass *task_class, const char *key)</div><div class="ttdoc">Finds a task in a task class by its content.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00047">task.c:47</a></div></div>
+<div class="ttc" id="atask_8c_html_ad75e84fcb31975c6b22ca56e630dcf01"><div class="ttname"><a href="task_8c.html#ad75e84fcb31975c6b22ca56e630dcf01">create_task_class</a></div><div class="ttdeci">TaskClass * create_task_class(char *class_name, size_t class_size)</div><div class="ttdoc">Creates a task class of a known class and size.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00024">task.c:24</a></div></div>
+<div class="ttc" id="atask_8c_html_af84a26f6b7159176d56038922250d399"><div class="ttname"><a href="task_8c.html#af84a26f6b7159176d56038922250d399">add_task</a></div><div class="ttdeci">void add_task(TaskClass *task_class, Task *new_task)</div><div class="ttdoc">Adds a task to a task class.</div><div class="ttdef"><b>Definition</b> <a href="task_8c_source.html#l00074">task.c:74</a></div></div>
 <div class="ttc" id="atask_8h_html"><div class="ttname"><a href="task_8h.html">task.h</a></div><div class="ttdoc">Contains structures and functions for handling task-related operations.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

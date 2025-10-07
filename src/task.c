@@ -8,7 +8,9 @@
 #define MAX_CONTENT_LENGTH 2056 
 
 /**
- * TASK INITIALIZERS
+ * @file task.c
+ * @author Rommel John Ronduen
+ * @date 10-07-25
  */
 
 Task* create_task(char* class_of_task, char* task_content)
@@ -21,6 +23,9 @@ Task* create_task(char* class_of_task, char* task_content)
 
 TaskClass* create_task_class(char* class_name, size_t class_size)
 {
+  /**
+   * @note This is a wrapper around the hashmap_create function
+   */
   TaskClass* task_class = (TaskClass*)malloc(sizeof(TaskClass));
   task_class->task_class_name = class_name;
   task_class->table_size = class_size;
@@ -30,19 +35,22 @@ TaskClass* create_task_class(char* class_name, size_t class_size)
 
 TaskCollection* create_task_collection(size_t collection_size)
 {
+  /**
+   * @note This is a wrapper around the hashmap_create function
+   */
   TaskCollection* task_collection = (TaskCollection*)malloc(sizeof(TaskCollection)); 
   task_collection->collection_size = collection_size;
   task_collection->task_collection = hashmap_create(collection_size);
   return task_collection;
 }
 
-
-/**
-  * TASK GETTERS
-  */
-
 Task* get_task(TaskClass* task_class, const char* key) 
 {
+  /**
+   * @note Wrapper around the hashmap_get function.
+   *
+   * Casts the output of hashmap_get to a Task* type
+   */
   if ( task_class == NULL || key == NULL ) 
   {
     printf("Task class error: task class or key is null\n");
@@ -53,17 +61,21 @@ Task* get_task(TaskClass* task_class, const char* key)
     printf("Task class error: invalid table size (%zu)", task_class->table_size);
     return NULL;
   }
+
   void* ret = hashmap_get(task_class->task_class_table, key);
   if (ret == NULL)
   {
     return NULL;
   }
-  return (Task*)ret;
-  //return task_get(task_class->task_class_table, key, task_class->table_size);
+
+  return (Task*)ret; //cast into Task type
 }
 
 void add_task(TaskClass* task_class, Task* new_task)
 {
+  /**
+   * @note Wrapper around the hashmap_set function
+   */
   if ( task_class == NULL || new_task->task_content == NULL ) 
   {
     printf("Task class error: task class or key is null\n");
@@ -85,6 +97,11 @@ void add_task(TaskClass* task_class, Task* new_task)
 
 TaskClass*  get_task_class(TaskCollection* task_collection, const char* key)
 {
+  /**
+   * @note Wrapper around the hashmap_get function
+   *
+   * Casts the output of hashmap_get to a TaskClass* type
+   */
   if (task_collection == NULL || key == NULL) 
   {
     return NULL;
@@ -100,11 +117,14 @@ TaskClass*  get_task_class(TaskCollection* task_collection, const char* key)
   {
     return NULL;
   }
-  return (TaskClass*)ret;
+  return (TaskClass*)ret; // Cast into a TaskClass type
 }
 
 void add_task_class(TaskCollection* task_collection, TaskClass* task_class)
 {
+  /**
+   * @note Wrapper around hashmap_set 
+   */
   if (task_collection == NULL || task_class == NULL) 
   {
     return;
@@ -113,20 +133,15 @@ void add_task_class(TaskCollection* task_collection, TaskClass* task_class)
   {
     return;
   }
+
   hashmap_set(task_collection->task_collection, task_class->task_class_name, task_class);
 }
 
-/**
- * END OF TASK CLASS MUTATORS
- */
-
-/**
- * Destructor implementation 
- */
-
-
 void remove_task(TaskClass* task_class, char* task_content)
 {
+  /**
+   * @note Wrapper around hashmap_elem_remove
+   */
   if (task_class == NULL || task_content == NULL)
   {
     return;
@@ -140,6 +155,9 @@ void remove_task(TaskClass* task_class, char* task_content)
 
 void remove_task_class(TaskCollection* task_collection, char* class_name)
 {
+  /**
+   * @note Wrapper around hashmap_elem_remove
+   */
   if (task_collection == NULL || class_name == NULL)
   {
     return;
@@ -151,12 +169,11 @@ void remove_task_class(TaskCollection* task_collection, char* class_name)
   hashmap_elem_remove(task_collection->task_collection, class_name);
 }
 
-/*
-* MISCELLANEOUS
-*/
-
 void print_task(Task* task)
 {
+  /**
+  * @warning Assumes that the task attributes are non-NULL
+  */
   if (task == NULL)
   {
     return;

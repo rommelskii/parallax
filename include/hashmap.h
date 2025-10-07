@@ -49,6 +49,8 @@ void          hashmap_set(HashMap* map, char* key, void* value);
 /**
   * @brief Finds an entry in a non-empty hashmap by a key 
   *
+  * Utilizes the standard approach of hashing and appending to non-empty entries.
+  *
   * @param map Pointer to the hashmap
   * @param key Pointer to the key string 
   * @return Pointer to the found element. NULL if not found
