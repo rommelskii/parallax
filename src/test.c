@@ -58,6 +58,14 @@ int argparse_test()
   argv[CONTENT_INDEX] = content_string;
   argv[CLASS_INDEX] = class_string;
 
+  if ( get_flag(argv[FLAG_INDEX]) != FLAG_CREATE )
+  {
+    printf("[FAILED] @ create flag\n");
+    return 0; 
+  } else {
+    printf("[PASSED] @ create flag\n");
+  }
+
   /**
     * Procedure: get_flag
     * Condition: valid command with remove flag
