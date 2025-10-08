@@ -18,7 +18,6 @@
  * 
  * unit tests:
  *  - argument parsing
- *  - hashmaps
  *  - tasks
  *  - runtime
  */
@@ -46,7 +45,7 @@ int argparse_test()
   const char* content_string        = "this is a test";
   const char* class_string          = "class";
 
-  printf("--- Flag Tests ---\n");
+  printf("---- Flag Tests ----\n");
   /**
     * INITIAL CONDITIONS
     * Procedure: get_flag
@@ -121,7 +120,7 @@ int argparse_test()
     printf("[PASSED] @ invalid flag\n");
   }
 
-  printf("--- Content Extraction Tests ---\n");
+  printf("---- Content Extraction Tests ----\n");
   /**
     * Procedure: get_content_arg
     * Condition: valid command with standard content
@@ -149,17 +148,119 @@ int argparse_test()
   } else {
     printf("[PASSED] @ class string extraction\n");
   }
-
-  return 1;
-}
-
-int hashmap_test()
-{
   return 1;
 }
 
 int task_test()
 {
+  // initial conditions
+  Task* test_task = NULL;
+  TaskClass* test_task_class = NULL;
+  TaskCollection* test_task_collection = NULL;
+  const char* CLASS = "class";
+  const char* CONTENT = "test content";
+  const size_t TABLE_SIZE = 100;
+
+  printf("---- Task Structures Test ----\n");
+  //Test 1: Task Creation
+  test_task = create_task(CLASS, CONTENT);
+  if (test_task == NULL)
+  {
+    printf("[FAILED] @ task creation\n");
+    return 0;
+  } else if ( test_task->task_class != CLASS )
+  {
+    printf("[FAILED] @ task class initialization\n");
+    return 0;
+  } else if ( test_task->task_content != CONTENT )
+  {
+    printf("[FAILED] @ task content initialization\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task initialization\n");
+  }
+
+  test_task_class = create_task_class(CLASS, TABLE_SIZE);
+  if (test_task_class == NULL)
+  {
+    printf("[FAILED] @ task class creation\n");
+    return 0;
+  } else if (test_task_class->task_class_name == NULL)
+  {
+    printf("[FAILED] @ task class name initialization\n");
+    return 0;
+  } else if (test_task_class->table_size != TABLE_SIZE)
+  {
+    printf("[FAILED] @ task class table size initialization\n");
+    return 0;
+  }  else if (test_task_class->task_class_table == NULL)
+  {
+    printf("[FAILED] @ task class table initialization\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task class initialization\n");
+  }
+
+  test_task_collection = create_task_collection(TABLE_SIZE);
+  if (test_task_collection == NULL)
+  {
+    printf("[FAILED] @ task collection creation\n");
+    return 0;
+  } else if (test_task_collection->collection_size != TABLE_SIZE)
+  {
+    printf("[FAILED] @ task collection table size initialization\n");
+    return 0;
+  } else if (test_task_collection->task_collection == NULL)
+  {
+    printf("[FAILED] @ task collection table initialization\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task collection initialization\n");
+  }
+  //end of task initialization procedures
+
+  //start of hashmap operations
+  add_task(test_task_class, test_task);
+  add_task_class(test_task_collection, test_task_class);
+  
+  Task* find_task = get_task(test_task_class, CONTENT);
+  if (find_task == NULL)
+  {
+    printf("[FAILED] @ task lookup\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task lookup\n");
+  }
+  
+  Task* find_task_class = get_task_class(test_task_collection, CLASS);
+  if (find_task_class == NULL)
+  {
+    printf("[FAILED] @ task class lookup\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task class lookup\n");
+  }
+
+  remove_task(test_task_class, CONTENT);
+  find_task = get_task(test_task_class, CONTENT);
+  if (find_task != NULL)
+  {
+    printf("[FAILED] @ task deletion\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task deletion\n");
+  }
+
+  remove_task_class(test_task_collection, CLASS);
+  find_task_class = get_task_class(test_task_collection, CLASS);
+  if (find_task_class != NULL)
+  {
+    printf("[FAILED] @ task class deletion\n");
+    return 0;
+  } else {
+    printf("[PASSED] @ task class deletion\n");
+  }
+  //end of hashmap operations
   return 1;
 }
 
@@ -201,7 +302,7 @@ void runtime_test()
       task_content[ strlen(task_content) - 1 ] = '\0';
     }
 
-    printf("--- Summary ---\nclass: '%s'\ncontent:'%s'\n---------------\nContinue? (y/n) ", class_name, task_content);
+    printf("---- Summary ----\nclass: '%s'\ncontent:'%s'\n---------------\nContinue? (y/n) ", class_name, task_content);
     fgets(yn, sizeof(yn), stdin);
     if ( strlen(yn) > 0 && (yn[ strlen(yn) - 1] == '\n') )
     {
