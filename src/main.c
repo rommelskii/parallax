@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
     {
       return EXIT_FAILURE;
     }
-    if ( task_test() != 1 )
+    else if ( task_test() != 1 )
     {
       return EXIT_FAILURE;
     }

@@ -39,7 +39,7 @@ TaskCollection* create_task_collection(size_t collection_size)
    * @note This is a wrapper around the hashmap_create function
    */
   TaskCollection* task_collection = (TaskCollection*)malloc(sizeof(TaskCollection)); 
-  task_collection->collection_size = 0;
+  task_collection->collection_size = collection_size;
   task_collection->task_collection = hashmap_create(collection_size);
   return task_collection;
 }
