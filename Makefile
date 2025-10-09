@@ -27,18 +27,12 @@ docs:
 clean-docs:
 	rm -rf docs
 
-
-
 all: $(TARGET)
 
 # Rule to link the final executable.
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
-ifeq ($(shell uname -s),Linux)
-		$(CC) $(OBJECTS) -o $(TARGET) $(LDLIBS)
-else 
-		$(CC) $(OBJECTS) -o $(TARGET) 
-endif
+	$(CC) $(OBJECTS) -o $(TARGET) 
 	@echo "Linking complete. Executable is at $(TARGET)"
 
 # Rule to compile a .c file into a .o file.

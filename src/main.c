@@ -15,6 +15,7 @@
 int main(int argc, char* argv[])
 {
   const int NUM_OF_ARGS = argc - 1;
+
   if (NUM_OF_ARGS < 2) 
   {
     printf("Error: Expected 2 or more arguments, got %d\n", NUM_OF_ARGS);
@@ -22,13 +23,19 @@ int main(int argc, char* argv[])
     return -1;
   }
 
+  // test entrypoint
   if ( strcmp(argv[FLAG_INDEX], "-t") == 0 ) 
   {
-    argparse_test();
-    task_test();
-    return 0;
+    if ( argparse_test() != 1 ) 
+    {
+      return EXIT_FAILURE;
+    }
+    if ( task_test() != 1 )
+    {
+      return EXIT_FAILURE;
+    }
+    return EXIT_SUCCESS;
   }
-
 
   const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
   char* class = NULL;
@@ -60,5 +67,5 @@ int main(int argc, char* argv[])
   }
 
 
-  return 0;
+  return EXIT_SUCCESS;
 }
