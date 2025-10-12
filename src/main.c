@@ -9,12 +9,12 @@
 #define FLAG_INDEX 1
 #define FIRST_CONTENT_INDEX 2
 #define SECOND_CONTENT_INDEX 3
-#define DEFAULT_CLASS "def"
 
 
 int main(int argc, char* argv[])
 {
   const int NUM_OF_ARGS = argc - 1;
+  const char* DEFAULT_CLASS = "def";
 
   if (NUM_OF_ARGS < 2) 
   {
@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
   }
 
-  const char* content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
+  const char* content = NULL;
   char* class = NULL;
 
   FLAG_TYPE flag = get_flag(argv[FLAG_INDEX]);
@@ -46,11 +46,19 @@ int main(int argc, char* argv[])
     case FLAG_CREATE: // 1: content 2: class if necessary
       if (NUM_OF_ARGS == 2) 
       {
-        class = "def";
+        class = DEFAULT_CLASS;
       } else 
       {
         class = get_content_arg(argv[SECOND_CONTENT_INDEX]);
       }
+      content = get_content_arg(argv[FIRST_CONTENT_INDEX]);
+      Task* new_task = create_task(class, content);
+      /* Entry point for pushing for IPC
+      if ( push_to_fifo(FIFO_FD, new_task) < 0 )
+      {
+        return EXIT_FAILURE; 
+      }
+      */
       break;  
     case FLAG_REMOVE:
       printf("Remove flag detected\n");
