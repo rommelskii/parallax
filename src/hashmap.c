@@ -144,3 +144,72 @@ void hashmap_destroy(HashMap* map)
   free(map->buckets); // Free the buckets array
   free(map);          // Free the map structure
 }
+
+Entry* entry_copy(Entry* original)
+{
+  if (original == NULL)
+  {
+    return NULL; //cannot copy from a NULL basis
+  }
+
+  Entry* copy = malloc(sizeof(Entry));
+  if (copy == NULL)
+  {
+    return NULL; // allocation failed
+  }
+
+  copy->key = (char*)malloc(strlen(original->key)+1);
+  if (copy->key == NULL)
+  {
+    free(copy);
+    return NULL; // keystring copy failedf
+  }
+
+  strncpy(copy->key, original->key, strlen(original->key)+1);
+  copy->next = NULL;
+
+  return copy;
+}
+
+Entry* hashmap_get_entries(HashMap* map)
+{
+  if (map == NULL)
+  {
+    return NULL; // map cannot be NULL
+  }
+  if (map->table_size <= 0)
+  {
+    return NULL; // invalid map table size
+  }
+
+  Entry* head = NULL;
+  Entry* tail = NULL;
+  size_t table_size = map->table_size;
+
+  for (size_t i = 0; i < table_size; i++) {
+    Entry* current = map->buckets[i];
+    while (current != NULL) { 
+      if (head == NULL) // case 1: first element (head is null)
+      {
+        head = entry_copy(current); // create a copy
+        if (head == NULL) 
+        {
+          printf("Entry fetch error: entry copy failed\n"); // copy has failed
+          return NULL;
+        }
+        tail = head;
+      } else { // case 2: non-first element
+        tail->next = entry_copy(current);
+        if (tail->next == NULL)
+        {
+          printf("Entry fetch error: entry copy failed\n"); // copy has failed
+          return NULL;
+        }
+        tail = tail->next; // set tail to new element appended  
+      }
+      current = current->next;
+    }
+  }
+
+  return head;
+}

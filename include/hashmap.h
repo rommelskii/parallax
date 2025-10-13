@@ -72,4 +72,22 @@ void          hashmap_elem_remove(HashMap* map, char* key);
   */
 void          hashmap_destroy(HashMap* map);
 
+/**
+ * @brief Creates a copy of an entry.
+ *
+ * Utilizes a deep copy approach to creating an exact copy of a non-NULL Entry object
+ *
+ * @param original Pointer to the entry to be copied
+ * @return Pointer to the copied entry. Returns null otherwise
+ */
+Entry* entry_copy(Entry* original);
+
+/**
+  * @brief Builds a linked list of existing entries in a non-empty hash table
+  * 
+  * Utilizes a sequential search over the entire entry and builds a linked list
+  * @param map Pointer to hash table
+  * @return Returns pointer to head of linked list. Otherwise returns NULL
+  */
+Entry* hashmap_get_entries(HashMap* map);
 #endif //HASHMAP_H
