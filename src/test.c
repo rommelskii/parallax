@@ -280,18 +280,18 @@ void hashmap_entry_test()
     return;
   }
 
-  TaskClass tc_A = create_task_class(CLASS_NAME_A, COLLECTION_SIZE);
-  TaskClass tc_B = create_task_class(CLASS_NAME_B, COLLECTION_SIZE);
-  TaskClass tc_C = create_task_class(CLASS_NAME_C, COLLECTION_SIZE);
+  TaskClass* tc_A = create_task_class(CLASS_NAME_A, COLLECTION_SIZE);
+  TaskClass* tc_B = create_task_class(CLASS_NAME_B, COLLECTION_SIZE);
+  TaskClass* tc_C = create_task_class(CLASS_NAME_C, COLLECTION_SIZE);
   if (tc_A == NULL || tc_B == NULL || tc_C == NULL)
   {
     printf("Error: failed to create task class\n");
     return;
   }
   
-  Task t_A = create_task(CLASS_NAME_A, CONTENT_A);
-  Task t_B = create_task(CLASS_NAME_A, CONTENT_B);
-  Task t_C = create_task(CLASS_NAME_A, CONTENT_C);
+  Task* t_A = create_task(CLASS_NAME_A, CONTENT_A);
+  Task* t_B = create_task(CLASS_NAME_A, CONTENT_B);
+  Task* t_C = create_task(CLASS_NAME_A, CONTENT_C);
 }
 
 void runtime_test()

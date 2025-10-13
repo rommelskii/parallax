@@ -115,6 +115,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a911864551888d875bb0ca4860679e331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an entry in a hashmap by its key.  <br /></td></tr>
 <tr class="memitem:a6baefe99b1a8ec93c91f581047c82c62" id="r_a6baefe99b1a8ec93c91f581047c82c62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6baefe99b1a8ec93c91f581047c82c62">hashmap_destroy</a> (<a class="el" href="struct_hash_map.html">HashMap</a> *map)</td></tr>
 <tr class="memdesc:a6baefe99b1a8ec93c91f581047c82c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a hashmap to memory.  <br /></td></tr>
+<tr class="memitem:a8a7516a7bd7fe05b7d487000f2abf869" id="r_a8a7516a7bd7fe05b7d487000f2abf869"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_entry.html">Entry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a7516a7bd7fe05b7d487000f2abf869">entry_copy</a> (<a class="el" href="struct_entry.html">Entry</a> *original)</td></tr>
+<tr class="memdesc:a8a7516a7bd7fe05b7d487000f2abf869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of an entry.  <br /></td></tr>
+<tr class="memitem:a075ade74a37fe127e9be64bfbc6c35c3" id="r_a075ade74a37fe127e9be64bfbc6c35c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_entry.html">Entry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a075ade74a37fe127e9be64bfbc6c35c3">hashmap_get_entries</a> (<a class="el" href="struct_hash_map.html">HashMap</a> *map)</td></tr>
+<tr class="memdesc:a075ade74a37fe127e9be64bfbc6c35c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a linked list of existing entries in a non-empty hash table.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains detailed implementation of the public procedures in the hashmap API. </p>
@@ -123,6 +127,62 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="hashmap_8c_source.html">hashmap.c</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a8a7516a7bd7fe05b7d487000f2abf869" name="a8a7516a7bd7fe05b7d487000f2abf869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a7516a7bd7fe05b7d487000f2abf869">&#9670;&#160;</a></span>entry_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_entry.html">Entry</a> * entry_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_entry.html">Entry</a> *</td>          <td class="paramname"><span class="paramname"><em>original</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a copy of an entry. </p>
+<p>Utilizes a deep copy approach to creating an exact copy of a non-NULL <a class="el" href="struct_entry.html" title="Linked list node definition of an entry in a hash map.">Entry</a> object</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>Pointer to the entry to be copied </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the copied entry. Returns null otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="hashmap_8c_source.html#l00148">148</a> of file <a class="el" href="hashmap_8c_source.html">hashmap.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  149</span>{</div>
+<div class="line"><span class="lineno">  150</span>  <span class="keywordflow">if</span> (original == NULL)</div>
+<div class="line"><span class="lineno">  151</span>  {</div>
+<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">return</span> NULL; <span class="comment">//cannot copy from a NULL basis</span></div>
+<div class="line"><span class="lineno">  153</span>  }</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>  <a class="code hl_struct" href="struct_entry.html">Entry</a>* copy = malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_entry.html">Entry</a>));</div>
+<div class="line"><span class="lineno">  156</span>  <span class="keywordflow">if</span> (copy == NULL)</div>
+<div class="line"><span class="lineno">  157</span>  {</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">return</span> NULL; <span class="comment">// allocation failed</span></div>
+<div class="line"><span class="lineno">  159</span>  }</div>
+<div class="line"><span class="lineno">  160</span> </div>
+<div class="line"><span class="lineno">  161</span>  copy-&gt;<a class="code hl_variable" href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">key</a> = (<span class="keywordtype">char</span>*)malloc(strlen(original-&gt;<a class="code hl_variable" href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">key</a>)+1);</div>
+<div class="line"><span class="lineno">  162</span>  <span class="keywordflow">if</span> (copy-&gt;<a class="code hl_variable" href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">key</a> == NULL)</div>
+<div class="line"><span class="lineno">  163</span>  {</div>
+<div class="line"><span class="lineno">  164</span>    free(copy);</div>
+<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">return</span> NULL; <span class="comment">// keystring copy failedf</span></div>
+<div class="line"><span class="lineno">  166</span>  }</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>  strncpy(copy-&gt;<a class="code hl_variable" href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">key</a>, original-&gt;<a class="code hl_variable" href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">key</a>, strlen(original-&gt;<a class="code hl_variable" href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">key</a>)+1);</div>
+<div class="line"><span class="lineno">  169</span>  copy-&gt;<a class="code hl_variable" href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">next</a> = NULL;</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>  <span class="keywordflow">return</span> copy;</div>
+<div class="line"><span class="lineno">  172</span>}</div>
+<div class="ttc" id="astruct_entry_html"><div class="ttname"><a href="struct_entry.html">Entry</a></div><div class="ttdoc">Linked list node definition of an entry in a hash map.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00015">hashmap.h:15</a></div></div>
+<div class="ttc" id="astruct_entry_html_a08cba741f383cd7da0f3ab9aee6e3cd5"><div class="ttname"><a href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">Entry::next</a></div><div class="ttdeci">struct Entry * next</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00018">hashmap.h:18</a></div></div>
+<div class="ttc" id="astruct_entry_html_a78468c67722e21d21a45c15421f6dbd6"><div class="ttname"><a href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">Entry::key</a></div><div class="ttdeci">char * key</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00016">hashmap.h:16</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a0cb8aef10853421aa56a9a19c049c446" name="a0cb8aef10853421aa56a9a19c049c446"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0cb8aef10853421aa56a9a19c049c446">&#9670;&#160;</a></span>hashmap_create()</h2>
 
@@ -156,7 +216,6 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   38</span>    map-&gt;<a class="code hl_variable" href="struct_hash_map.html#a7242f37e1091273a16e6379f88b92c69">table_size</a> = table_size;</div>
 <div class="line"><span class="lineno">   39</span>    <span class="keywordflow">return</span> map;</div>
 <div class="line"><span class="lineno">   40</span>}</div>
-<div class="ttc" id="astruct_entry_html"><div class="ttname"><a href="struct_entry.html">Entry</a></div><div class="ttdoc">Linked list node definition of an entry in a hash map.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00015">hashmap.h:15</a></div></div>
 <div class="ttc" id="astruct_hash_map_html"><div class="ttname"><a href="struct_hash_map.html">HashMap</a></div><div class="ttdoc">Hashmap structure.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00026">hashmap.h:26</a></div></div>
 <div class="ttc" id="astruct_hash_map_html_a7242f37e1091273a16e6379f88b92c69"><div class="ttname"><a href="struct_hash_map.html#a7242f37e1091273a16e6379f88b92c69">HashMap::table_size</a></div><div class="ttdeci">size_t table_size</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00028">hashmap.h:28</a></div></div>
 <div class="ttc" id="astruct_hash_map_html_a8e4604017b1454dfc661b4e6ebc4d3dd"><div class="ttname"><a href="struct_hash_map.html#a8e4604017b1454dfc661b4e6ebc4d3dd">HashMap::buckets</a></div><div class="ttdeci">Entry ** buckets</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00027">hashmap.h:27</a></div></div>
@@ -201,8 +260,6 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  144</span>  free(map-&gt;<a class="code hl_variable" href="struct_hash_map.html#a8e4604017b1454dfc661b4e6ebc4d3dd">buckets</a>); <span class="comment">// Free the buckets array</span></div>
 <div class="line"><span class="lineno">  145</span>  free(map);          <span class="comment">// Free the map structure</span></div>
 <div class="line"><span class="lineno">  146</span>}</div>
-<div class="ttc" id="astruct_entry_html_a08cba741f383cd7da0f3ab9aee6e3cd5"><div class="ttname"><a href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">Entry::next</a></div><div class="ttdeci">struct Entry * next</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00018">hashmap.h:18</a></div></div>
-<div class="ttc" id="astruct_entry_html_a78468c67722e21d21a45c15421f6dbd6"><div class="ttname"><a href="struct_entry.html#a78468c67722e21d21a45c15421f6dbd6">Entry::key</a></div><div class="ttdeci">char * key</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00016">hashmap.h:16</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -318,6 +375,76 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   99</span>  <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><span class="lineno">  100</span>}</div>
 <div class="ttc" id="astruct_entry_html_aca33bdbd628f38adb997eb8e8a6f64c4"><div class="ttname"><a href="struct_entry.html#aca33bdbd628f38adb997eb8e8a6f64c4">Entry::value</a></div><div class="ttdeci">void * value</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8h_source.html#l00017">hashmap.h:17</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a075ade74a37fe127e9be64bfbc6c35c3" name="a075ade74a37fe127e9be64bfbc6c35c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a075ade74a37fe127e9be64bfbc6c35c3">&#9670;&#160;</a></span>hashmap_get_entries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_entry.html">Entry</a> * hashmap_get_entries </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_hash_map.html">HashMap</a> *</td>          <td class="paramname"><span class="paramname"><em>map</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds a linked list of existing entries in a non-empty hash table. </p>
+<p>Utilizes a sequential search over the entire entry and builds a linked list </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td>Pointer to hash table </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns pointer to head of linked list. Otherwise returns NULL </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="hashmap_8c_source.html#l00174">174</a> of file <a class="el" href="hashmap_8c_source.html">hashmap.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  175</span>{</div>
+<div class="line"><span class="lineno">  176</span>  <span class="keywordflow">if</span> (map == NULL)</div>
+<div class="line"><span class="lineno">  177</span>  {</div>
+<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">return</span> NULL; <span class="comment">// map cannot be NULL</span></div>
+<div class="line"><span class="lineno">  179</span>  }</div>
+<div class="line"><span class="lineno">  180</span>  <span class="keywordflow">if</span> (map-&gt;<a class="code hl_variable" href="struct_hash_map.html#a7242f37e1091273a16e6379f88b92c69">table_size</a> &lt;= 0)</div>
+<div class="line"><span class="lineno">  181</span>  {</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">return</span> NULL; <span class="comment">// invalid map table size</span></div>
+<div class="line"><span class="lineno">  183</span>  }</div>
+<div class="line"><span class="lineno">  184</span> </div>
+<div class="line"><span class="lineno">  185</span>  <a class="code hl_struct" href="struct_entry.html">Entry</a>* head = NULL;</div>
+<div class="line"><span class="lineno">  186</span>  <a class="code hl_struct" href="struct_entry.html">Entry</a>* tail = NULL;</div>
+<div class="line"><span class="lineno">  187</span>  <span class="keywordtype">size_t</span> table_size = map-&gt;<a class="code hl_variable" href="struct_hash_map.html#a7242f37e1091273a16e6379f88b92c69">table_size</a>;</div>
+<div class="line"><span class="lineno">  188</span> </div>
+<div class="line"><span class="lineno">  189</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; table_size; i++) {</div>
+<div class="line"><span class="lineno">  190</span>    <a class="code hl_struct" href="struct_entry.html">Entry</a>* current = map-&gt;<a class="code hl_variable" href="struct_hash_map.html#a8e4604017b1454dfc661b4e6ebc4d3dd">buckets</a>[i];</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">while</span> (current != NULL) { </div>
+<div class="line"><span class="lineno">  192</span>      <span class="keywordflow">if</span> (head == NULL) <span class="comment">// case 1: first element (head is null)</span></div>
+<div class="line"><span class="lineno">  193</span>      {</div>
+<div class="line"><span class="lineno">  194</span>        head = <a class="code hl_function" href="#a8a7516a7bd7fe05b7d487000f2abf869">entry_copy</a>(current); <span class="comment">// create a copy</span></div>
+<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">if</span> (head == NULL) </div>
+<div class="line"><span class="lineno">  196</span>        {</div>
+<div class="line"><span class="lineno">  197</span>          printf(<span class="stringliteral">&quot;Entry fetch error: entry copy failed\n&quot;</span>); <span class="comment">// copy has failed</span></div>
+<div class="line"><span class="lineno">  198</span>          <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  199</span>        }</div>
+<div class="line"><span class="lineno">  200</span>        tail = head;</div>
+<div class="line"><span class="lineno">  201</span>      } <span class="keywordflow">else</span> { <span class="comment">// case 2: non-first element</span></div>
+<div class="line"><span class="lineno">  202</span>        tail-&gt;<a class="code hl_variable" href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">next</a> = <a class="code hl_function" href="#a8a7516a7bd7fe05b7d487000f2abf869">entry_copy</a>(current);</div>
+<div class="line"><span class="lineno">  203</span>        <span class="keywordflow">if</span> (tail-&gt;<a class="code hl_variable" href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">next</a> == NULL)</div>
+<div class="line"><span class="lineno">  204</span>        {</div>
+<div class="line"><span class="lineno">  205</span>          printf(<span class="stringliteral">&quot;Entry fetch error: entry copy failed\n&quot;</span>); <span class="comment">// copy has failed</span></div>
+<div class="line"><span class="lineno">  206</span>          <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  207</span>        }</div>
+<div class="line"><span class="lineno">  208</span>        tail = tail-&gt;<a class="code hl_variable" href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">next</a>; <span class="comment">// set tail to new element appended  </span></div>
+<div class="line"><span class="lineno">  209</span>      }</div>
+<div class="line"><span class="lineno">  210</span>      current = current-&gt;<a class="code hl_variable" href="struct_entry.html#a08cba741f383cd7da0f3ab9aee6e3cd5">next</a>;</div>
+<div class="line"><span class="lineno">  211</span>    }</div>
+<div class="line"><span class="lineno">  212</span>  }</div>
+<div class="line"><span class="lineno">  213</span> </div>
+<div class="line"><span class="lineno">  214</span>  <span class="keywordflow">return</span> head;</div>
+<div class="line"><span class="lineno">  215</span>}</div>
+<div class="ttc" id="ahashmap_8c_html_a8a7516a7bd7fe05b7d487000f2abf869"><div class="ttname"><a href="#a8a7516a7bd7fe05b7d487000f2abf869">entry_copy</a></div><div class="ttdeci">Entry * entry_copy(Entry *original)</div><div class="ttdoc">Creates a copy of an entry.</div><div class="ttdef"><b>Definition</b> <a href="hashmap_8c_source.html#l00148">hashmap.c:148</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
