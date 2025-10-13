@@ -78,16 +78,18 @@ void          hashmap_destroy(HashMap* map);
  * Utilizes a deep copy approach to creating an exact copy of a non-NULL Entry object
  *
  * @param original Pointer to the entry to be copied
+ * @param value_size Size of the struct or datatype
  * @return Pointer to the copied entry. Returns null otherwise
  */
-Entry* entry_copy(Entry* original);
+Entry* entry_copy(Entry* original, size_t value_size);
 
 /**
   * @brief Builds a linked list of existing entries in a non-empty hash table
   * 
   * Utilizes a sequential search over the entire entry and builds a linked list
   * @param map Pointer to hash table
+  * @param value_size Size of the struct or datatype
   * @return Returns pointer to head of linked list. Otherwise returns NULL
   */
-Entry* hashmap_get_entries(HashMap* map);
+Entry* hashmap_get_entries(HashMap* map, size_t value_size);
 #endif //HASHMAP_H

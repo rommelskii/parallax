@@ -145,5 +145,7 @@ void remove_task_class(TaskCollection* task_collection, char* class_name);
   */
 void  print_task(Task* task);
 
+void  print_task_list(TaskClass* task_class);
+
 
 #endif //TASK_H

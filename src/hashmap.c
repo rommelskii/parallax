@@ -145,33 +145,43 @@ void hashmap_destroy(HashMap* map)
   free(map);          // Free the map structure
 }
 
-Entry* entry_copy(Entry* original)
+Entry* entry_copy(Entry* original, size_t value_size)
 {
   if (original == NULL)
   {
     return NULL; //cannot copy from a NULL basis
   }
 
+  //copy memory allocation
   Entry* copy = malloc(sizeof(Entry));
   if (copy == NULL)
   {
     return NULL; // allocation failed
   }
 
+  //key copying
   copy->key = (char*)malloc(strlen(original->key)+1);
   if (copy->key == NULL)
   {
     free(copy);
     return NULL; // keystring copy failedf
   }
-
   strncpy(copy->key, original->key, strlen(original->key)+1);
   copy->next = NULL;
+
+  //value copying
+  copy->value = malloc(value_size);
+  if (copy->value == NULL)
+  {
+    printf("Entry copy error: cannot allocate memory for copy value\n");
+    return NULL;
+  }
+  memcpy(copy->value, original->value, value_size);
 
   return copy;
 }
 
-Entry* hashmap_get_entries(HashMap* map)
+Entry* hashmap_get_entries(HashMap* map, size_t value_size)
 {
   if (map == NULL)
   {
@@ -191,7 +201,7 @@ Entry* hashmap_get_entries(HashMap* map)
     while (current != NULL) { 
       if (head == NULL) // case 1: first element (head is null)
       {
-        head = entry_copy(current); // create a copy
+        head = entry_copy(current, value_size); // create a copy
         if (head == NULL) 
         {
           printf("Entry fetch error: entry copy failed\n"); // copy has failed
@@ -199,7 +209,7 @@ Entry* hashmap_get_entries(HashMap* map)
         }
         tail = head;
       } else { // case 2: non-first element
-        tail->next = entry_copy(current);
+        tail->next = entry_copy(current, value_size);
         if (tail->next == NULL)
         {
           printf("Entry fetch error: entry copy failed\n"); // copy has failed

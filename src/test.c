@@ -232,7 +232,7 @@ int task_test()
     printf("[PASSED] @ task lookup\n");
   }
   
-  Task* find_task_class = get_task_class(test_task_collection, CLASS);
+  TaskClass* find_task_class = get_task_class(test_task_collection, CLASS);
   if (find_task_class == NULL)
   {
     printf("[FAILED] @ task class lookup\n");
@@ -292,6 +292,12 @@ void hashmap_entry_test()
   Task* t_A = create_task(CLASS_NAME_A, CONTENT_A);
   Task* t_B = create_task(CLASS_NAME_A, CONTENT_B);
   Task* t_C = create_task(CLASS_NAME_A, CONTENT_C);
+
+  add_task(tc_A, t_A);
+  add_task(tc_A, t_B);
+  add_task(tc_A, t_C);
+
+  print_task_list(tc_A);
 }
 
 void runtime_test()

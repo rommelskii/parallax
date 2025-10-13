@@ -181,5 +181,50 @@ void print_task(Task* task)
   printf("Task class: %s\nContent: %s\n", task->task_class, task->task_content);
 }
 
+void print_task_list(TaskClass* task_class)
+{
+  if (task_class == NULL)
+  {
+    printf("Task list print error: task_class empty\n");
+    return;
+  }
+  if (task_class->task_class_name == NULL || task_class->task_class_table == NULL)
+  {
+    printf("Task list print error: one or more task class attributes are NULL\n");
+    return;
+  }
+
+
+  // we use task size since we are returning tasks from a task class
+  Entry* entry_list = hashmap_get_entries(task_class->task_class_table, sizeof(Task));
+  if (entry_list == NULL) // task class is empty, i.e., has no non-NULL entries
+  {
+    printf("Task class '%s' is empty\n", task_class->task_class_name);
+    return;
+  }
+
+  Entry* iter = entry_list; 
+  while (iter != NULL)
+  {
+    Task* current_task = (Task*)(iter->value); // variable for casting iterator value
+
+    if (current_task == NULL)
+    {
+      printf("Task list print error: key valid but non-existing task\n");
+      return;
+    }
+    if (current_task->task_content == NULL || current_task->task_class == NULL)
+    {
+      printf("Task list print error: key valid but some attribute doesn't exist\n");
+      return;
+    }
+    // if task is valid, print content to stdout
+    printf("Content: %s | Class: %s\n", current_task->task_content, current_task->task_class);
+    iter = iter->next;
+  }
+
+  return;
+}
+
 
 
