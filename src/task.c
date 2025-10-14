@@ -137,36 +137,38 @@ void add_task_class(TaskCollection* task_collection, TaskClass* task_class)
   hashmap_set(task_collection->task_collection, task_class->task_class_name, task_class);
 }
 
-void remove_task(TaskClass* task_class, char* task_content)
+int remove_task(TaskClass* task_class, char* task_content)
 {
   /**
    * @note Wrapper around hashmap_elem_remove
    */
   if (task_class == NULL || task_content == NULL)
   {
-    return;
+    return -1;
   }
   if (task_class->task_class_table == NULL)
   {
-    return; 
+    return -1; 
   }
-  hashmap_elem_remove(task_class->task_class_table, task_content);
+
+  return hashmap_elem_remove(task_class->task_class_table, task_content);
 }
 
-void remove_task_class(TaskCollection* task_collection, char* class_name)
+int remove_task_class(TaskCollection* task_collection, char* class_name)
 {
   /**
    * @note Wrapper around hashmap_elem_remove
    */
   if (task_collection == NULL || class_name == NULL)
   {
-    return;
+    return -1;
   }
   if (task_collection->task_collection == NULL)
   {
-    return; 
+    return -1; 
   }
-  hashmap_elem_remove(task_collection->task_collection, class_name);
+
+  return hashmap_elem_remove(task_collection->task_collection, class_name);
 }
 
 void print_task(Task* task)

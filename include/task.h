@@ -128,7 +128,7 @@ void        add_task_class(TaskCollection* task_collection, TaskClass* task_clas
  * @param task_class Pointer to the task class that contains the task to be removed
  * @param task_content Pointer to the content string of the task to be removed
  */
-void remove_task(TaskClass* task_class, char* task_content);
+int remove_task(TaskClass* task_class, char* task_content);
 
 /**
  * @brief Removes a task class from a task collection
@@ -136,7 +136,7 @@ void remove_task(TaskClass* task_class, char* task_content);
  * @param task_collection Pointer to the task collection that contains the task class to be removed 
  * @param class_name Pointer to the class name string of the task class to be removed
  */
-void remove_task_class(TaskCollection* task_collection, char* class_name);
+int remove_task_class(TaskCollection* task_collection, char* class_name);
 
 /**
   * @brief Prints the content of a task
