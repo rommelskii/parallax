@@ -99,7 +99,7 @@ void* hashmap_get(HashMap* map, char* key)
   return NULL;
 }
 
-void hashmap_elem_remove(HashMap* map, char* key)
+int hashmap_elem_remove(HashMap* map, char* key)
 {
   unsigned long hash = hash_function(key);  
   size_t index = hash % map->table_size;
@@ -117,7 +117,7 @@ void hashmap_elem_remove(HashMap* map, char* key)
   if (current == NULL)
   {
     printf("Hashmap error: delete node cannot be found\n");
-    return;
+    return -1;
   }
   if (prev == NULL)
   {
@@ -127,6 +127,7 @@ void hashmap_elem_remove(HashMap* map, char* key)
   }
   free(current->key);
   free(current);
+  return 1;
 }
 
 void hashmap_destroy(HashMap* map) 

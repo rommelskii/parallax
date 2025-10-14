@@ -63,7 +63,7 @@ void*         hashmap_get(HashMap* map, char* key);
   * @param map Pointer to the hashmap
   * @param key Pointer to the key string 
   */
-void          hashmap_elem_remove(HashMap* map, char* key);
+int          hashmap_elem_remove(HashMap* map, char* key);
 
 /**
   * @brief Frees a hashmap to memory

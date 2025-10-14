@@ -298,6 +298,8 @@ void hashmap_entry_test()
   add_task(tc_A, t_C);
 
   print_task_list(tc_A);
+
+  remove_task(tc_A, CONTENT_B);
 }
 
 void runtime_test()
