@@ -34,9 +34,10 @@ int main(int argc, char* argv[])
     {
       return EXIT_FAILURE;
     }
-
-    hashmap_entry_test();
-
+    else if ( hashmap_entry_test() != 1 )
+    {
+      return EXIT_FAILURE;
+    }
 
     return EXIT_SUCCESS;
   }

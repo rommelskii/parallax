@@ -264,8 +264,9 @@ int task_test()
   return 1;
 }
 
-void hashmap_entry_test()
+int hashmap_entry_test()
 {
+  printf("---- Task Listing Test ----\n"); 
   const int COLLECTION_SIZE = 100;
   const char* CLASS_NAME_A = "class_A";
   const char* CLASS_NAME_B = "class_B";
@@ -277,7 +278,7 @@ void hashmap_entry_test()
   if (tc == NULL)
   {
     printf("Error: failed to create task collection\n");
-    return;
+    return -1;
   }
 
   TaskClass* tc_A = create_task_class(CLASS_NAME_A, COLLECTION_SIZE);
@@ -286,7 +287,7 @@ void hashmap_entry_test()
   if (tc_A == NULL || tc_B == NULL || tc_C == NULL)
   {
     printf("Error: failed to create task class\n");
-    return;
+    return -1;
   }
   
   Task* t_A = create_task(CLASS_NAME_A, CONTENT_A);
@@ -297,9 +298,48 @@ void hashmap_entry_test()
   add_task(tc_A, t_B);
   add_task(tc_A, t_C);
 
-  print_task_list(tc_A);
+  Entry* entry_list = hashmap_get_entries(tc_A->task_class_table, sizeof(Task));
+  if (entry_list == NULL)
+  {
+    return -1;
+  }
 
-  remove_task(tc_A, CONTENT_B);
+  Entry* iter = entry_list;
+  size_t list_size = 0;
+  
+  while (iter != NULL)
+  {
+    ++list_size;
+    iter = iter->next;
+  }
+  
+  if (list_size != 3)
+  {
+    printf("Entry list error: did not return proper size of 3 (%zu)\n", list_size);
+    return -1;
+  }
+
+
+  remove_task(tc_A, CONTENT_A);
+  list_size = 0;
+  entry_list = hashmap_get_entries(tc_A->task_class_table, sizeof(Task));
+  iter = entry_list;
+
+  while (iter != NULL)
+  {
+    ++list_size;
+    iter = iter->next;
+  }
+  
+  if (list_size != 2)
+  {
+    printf("Entry list error: did not return proper size of 2 (%zu)\n", list_size);
+    return -1;
+  }
+
+  printf("[PASSED] @ entry listing\n");
+
+  return 1;
 }
 
 void runtime_test()
